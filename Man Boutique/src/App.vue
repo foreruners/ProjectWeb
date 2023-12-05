@@ -8,6 +8,10 @@ import MainLayout from './Pages/Master/MainLayout.vue';
   <MainLayout></MainLayout>
   </div>
 
+  <div style="text-align: center;">
+
+  </div>
+
 </template>
 
 <style scoped>
