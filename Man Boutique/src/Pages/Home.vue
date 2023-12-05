@@ -1,5 +1,5 @@
 <template>
-    Home
+    Home HomeHome HomeHome HomeHome HomeHome HomeHome HomeHome HomeHome HomeHome HomeHome Home
 </template>
 
 <script>
