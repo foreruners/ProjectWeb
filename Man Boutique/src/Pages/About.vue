@@ -1,7 +1,3 @@
 <template>
-    About
+    Home
 </template>
-
-<script>
-
-</script>

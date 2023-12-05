@@ -1,7 +1,3 @@
 <template>
-    Shop
+    Home
 </template>
-
-<script>
-
-</script>
