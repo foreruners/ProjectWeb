@@ -1,5 +1,6 @@
 <script setup>
 import SocialMedia from '../../components/SocialMedia.vue';
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -8,22 +9,22 @@ import SocialMedia from '../../components/SocialMedia.vue';
       <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <RouterLink class="nav-link active" to="/">Home</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Shop</a>
+            <RouterLink class="nav-link active" to="/shop">Shop</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <RouterLink class="nav-link active" to="/contact">Contact</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <RouterLink class="nav-link active" to="/about">About</RouterLink>
           </li>
         </ul>
 
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-            <a class="navbar-brand" href="#">Man Boutique</a>
+              <RouterLink class="navbar-brand" to="/">Man Boutique</RouterLink>
             </li>
         </ul>
 
