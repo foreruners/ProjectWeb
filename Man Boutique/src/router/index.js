@@ -5,8 +5,11 @@ const routes = [
     { path: '/', component: Home },
     { path: '/about', component: () => import('../Pages/About.vue') },
     { path: '/contact', component: () => import('../Pages/Contact.vue') },
-    { path: '/shop', component: () => import('../Pages/Shop.vue') }
+    { path: '/shop', component: () => import('../Pages/Shop.vue') },
+    { path: '/cart', component: () => import('../Pages/Cart.vue') }, 
 ]
+    
+
 
 const router = createRouter({
     history: createWebHistory(),
