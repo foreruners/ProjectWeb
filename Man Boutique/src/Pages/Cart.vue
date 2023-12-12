@@ -36,7 +36,7 @@
                                                         </div>
                                                         <div class="col ">
                                                             <button class="btn btn-light"
-                                                                @click="addPlus_OnCard(item)">+</button>
+                                                                @click="addInCard(item)">+</button>
                                                         </div>
                                                         <div class="col ">
                                                             <button class="btn btn-light"
@@ -97,9 +97,18 @@ export default {
     methods: {
         removeFromCart(item) {
             // Remove item from cart
+            const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+            if (index !== -1) {
+                this.cartItems.splice(index, 1);
+            }
         },
-        addPlus_OnCard(item) {
+        addInCard(item) {
             // Add item to cart
+                const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+                if (index !== -1) {
+                    this.cartItems[index].quantity += 1;
+                }
+            
         },
         deletedItem(item) {
             // Delete item from cart
@@ -115,8 +124,10 @@ export default {
         }
 
     }
-};
+}
+
 </script>
+
 
 <style scoped>
 .row {
