@@ -9,12 +9,12 @@ export default {
 </script>
 
 <template>
-  <div class="container d-flex justify-content-between bg-secondary text-light">
+  <div class="container d-flex justify-content-between bg-secondary text-light  fixed-bottom ">
     <div>
-      <SocialMedia></SocialMedia>
+      <SocialMedia class="bi-xs"></SocialMedia>
     </div>
-    <div>Man Boutique</div>
-    <div>© 2023 Man Boutique</div>
+    <p class="mb-0 d-flex align-items-center">Man Boutique</p>
+    <p class="mb-0 d-flex align-items-center">© 2023 Man Boutique</p>
   </div>
 </template>
 

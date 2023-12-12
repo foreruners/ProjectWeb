@@ -1,13 +1,17 @@
-import { createApp } from 'vue'
-//import './style.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import App from './App.vue'
-import { createPinia } from 'pinia'
-import router from './router'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import App from './App.vue';
+import router from './router/index.js';
+import axios from 'axios';
 
-const app = createApp(App)
-const pinia = createPinia()
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-app.use(pinia)
-app.use(router)
-app.mount('#app')
+const pinia = createPinia(); 
+
+const app = createApp(App);
+app.use(pinia); 
+app.use(router).mount('#app');
+app.config.globalProperties.$axios = axios;
+
+export { pinia };
