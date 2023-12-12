@@ -59,8 +59,8 @@
                 <div class="row pb-5 ps-5 text-start">
                     <div class="cart-cupons">
                         <h3>Cupons</h3>
-                        <input type="text" placeholder="Enter cupon code" />
-                        <button @click="checkCupon">Apply</button>
+                        <input type="text" v-model="getCouponCode" placeholder="Enter coupon code" />
+                        <button @click="checkCoupons">Apply</button>
                     </div>
                 </div>
                 <div class="row pt-5 ps-5 text-start">
@@ -76,11 +76,12 @@
     </div>
 </template>
 
-<script>
+<script >
+import Api from '../services/api.js';
 export default {
     data() {
         return {
-
+         
             // for testing purposes
             cartItems: [
                 { id: 1, name: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", price: 10, quantity: 1, image: "item2.jpg" },
@@ -90,7 +91,13 @@ export default {
                 { id: 5, name: "Item 5", price: 8, quantity: 2, image: "item5.jpg" },
                 { id: 6, name: "Item 6", price: 15, quantity: 1, image: "item6.jpg" },
                 { id: 7, name: "Item 7", price: 10, quantity: 4, image: "item7.jpg" },
-                { id: 8, name: "Item 8", price: 18, quantity: 2, image: "item8.jpg" }
+                { id: 8, name: "Item 8", price: 18, quantity: 2, image: "item8.jpg" },
+                { id: 8, name: "Item 8", price: 18, quantity: 2, image: "item8.jpg" },
+                { id: 9, name: "Item 9", price: 25, quantity: 3, image: "item9.jpg" },
+                { id: 10, name: "Item 10", price: 30, quantity: 1, image: "item10.jpg" },
+                { id: 11, name: "Item 11", price: 15, quantity: 2, image: "item11.jpg" },
+                { id: 12, name: "Item 12", price: 22, quantity: 1, image: "item12.jpg" }
+                      
             ]
         };
     },
@@ -112,15 +119,33 @@ export default {
         },
         deletedItem(item) {
             // Delete item from cart
+            const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+            if (index !== -1)
+             {
+                 this.cartItems.splice(index, 1);
+            }
         },
         getTotalPrice() {
             // Calculate total price of items in cart
+            this.totalPrice = this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+       
+        },
+        getTotal()
+        {
+            //total = totalPrice - discount
         },
         checkout() {
             // Perform checkout process
+           
+
+            
+            this.cartItems = [];      
+          
         },
-        checkCupon() {
+        checkCoupons()
+         {
             // Check if cupon is valid
+            
         }
 
     }
