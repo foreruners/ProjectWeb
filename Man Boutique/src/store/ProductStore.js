@@ -10,7 +10,6 @@ export const useProductStore = defineStore({
   }),
   actions: {
     async fetchProducts() {
-      console.log('7');
 
       this.loading = true;
 
