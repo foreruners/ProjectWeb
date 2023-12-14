@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" @click="addToCartHandler(product.id)">Add to cart</a></div>
       </div>
     </div>
 
@@ -52,8 +52,17 @@
 
 <script setup>
 import { defineProps } from 'vue';
+import { useCartStore } from '../store/CartStore';
 
 const props = defineProps(['product']);
+const cartStore = useCartStore();
+
+const addToCartHandler = (productId) => {
+  console.log(productId);
+  cartStore.addToCart(props.product);
+  
+};
+
 </script>
 
 <style>
