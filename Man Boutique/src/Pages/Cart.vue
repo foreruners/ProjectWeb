@@ -38,7 +38,7 @@
                                                             <button class="btn btn-light"
                                                                 @click="addInCard(item)">+</button>
                                                         </div>
-                                                        <div class="col ">
+                                                        <div class="col text-end">
                                                             <button class="btn btn-light"
                                                                 @click="deletedItem(item)">Delete</button>
                                                         </div>
@@ -68,7 +68,7 @@
                         <p>Total Price: {{ }}€ </p>
                         <p>Discount: {{ }}€ </p>
                         <p>Total: {{ }}€ </p>
-                        <button @click="checkout">Checkout</button>
+                        <button @click="Docheckout">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ import Api from '../services/api.js';
 export default {
     data() {
         return {
-         
+         getCouponCode: '',
             // for testing purposes
             cartItems: [
                 { id: 1, name: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", price: 10, quantity: 1, image: "item2.jpg" },
@@ -134,7 +134,7 @@ export default {
         {
             //total = totalPrice - discount
         },
-        checkout() {
+        doCheckout() {
             // Perform checkout process
            
 
@@ -145,6 +145,15 @@ export default {
         checkCoupons()
          {
             // Check if cupon is valid
+             Api.checkCoupons(this.getCouponCode)
+                .then(response => {
+                    if (response.data) {
+                        this.discount = response.data.discount;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             
         }
 
