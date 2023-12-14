@@ -1,6 +1,9 @@
 <script setup>
 import SocialMedia from '../../components/SocialMedia.vue';
 import { RouterLink, RouterView } from 'vue-router'
+import { useCartStore } from '../../store/CartStore';
+
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -15,13 +18,15 @@ import { RouterLink, RouterView } from 'vue-router'
             <RouterLink class="nav-link active" to="/shop">Shop</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link active" to="/cart">Cart</RouterLink>
-          </li>
-          <li class="nav-item">
             <RouterLink class="nav-link active" to="/contact">Contact</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link active" to="/about">About</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link active" to="/cart">
+              <span class="cart-icon">🛒</span> Cart ({{ cartStore.totalQuantity }})
+            </RouterLink>
           </li>
         </ul>
 
