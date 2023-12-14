@@ -25,7 +25,8 @@ const cartStore = useCartStore();
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link active" to="/cart">
-              <span class="cart-icon">🛒</span> Cart ({{ cartStore.totalQuantity }})
+              <i class="bi bi-cart"></i>Cart ({{ cartStore.totalQuantity }})
+              
             </RouterLink>
           </li>
         </ul>
