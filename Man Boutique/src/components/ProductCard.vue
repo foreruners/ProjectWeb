@@ -1,5 +1,5 @@
 <template>
-  <div class="card h-100">
+  <div class="card h-100 d-flex flex-column align-items-end">
     <div >
       <img class="card-img-top" :src="product.image" alt="Product Image" data-toggle="modal" :data-target="'#myModal' + product.id"/>
       <div class="card-body p-4">
@@ -15,9 +15,9 @@
           Price: €{{ product.price }} - Quantity: {{ product.quantity }}
         </div>
       </div>
-      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" @click="addToCartHandler(product.id)">Add to cart</a></div>
-      </div>
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent ">
+    <div class="text-center"><a class="btn btn-outline-dark" href="#" @click="addToCartHandler(product.id)">Add to cart</a></div>
+ </div>
     </div>
 
     <!-- Bootstrap Modal -->
