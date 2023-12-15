@@ -6,19 +6,22 @@
       </div>
     </div>
 
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center mt-4">
-        <li class="page-item" :class="{ disabled: currentPage === 1 }">
-          <a class="page-link" href="#" @click.prevent="goToPreviousPage" aria-label="Previous">
+    <!-- Custom Pagination -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center pagination-gray">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous" @click="goToPreviousPage">
             <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: currentPage === page }">
-          <a class="page-link" href="#" @click.prevent="goToPage(page)">{{ page }}</a>
+        <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
+          <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
         </li>
-        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-          <a class="page-link" href="#" @click.prevent="goToNextPage" aria-label="Next">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next" @click="goToNextPage">
             <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
           </a>
         </li>
       </ul>
@@ -36,8 +39,9 @@ import { ref, computed } from 'vue';
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
-const itemsPerPage = 5; 
+const itemsPerPage = 10; 
 const currentPage = ref(1);
+
 
 const totalPages = computed(() => Math.ceil(productStore.products.length / itemsPerPage));
 
@@ -47,10 +51,8 @@ const currentProducts = computed(() => {
   return productStore.products.slice(startIndex, endIndex);
 });
 
-const goToNextPage = () => {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value += 1;
-  }
+const goToPage = (page) => {
+  currentPage.value = page;
 };
 
 const goToPreviousPage = () => {
@@ -59,8 +61,10 @@ const goToPreviousPage = () => {
   }
 };
 
-const goToPage = (page) => {
-  currentPage.value = page;
+const goToNextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value += 1;
+  }
 };
 
 onMounted(() => {
@@ -70,3 +74,22 @@ onMounted(() => {
 console.log(cartStore.products);
 console.log(productStore.products);
 </script>
+
+<style scoped>
+.pagination-gray .page-link,
+.pagination-gray .page-item.active .page-link {
+  background-color: #f8f9fa; 
+  color: #6c757d;
+  border-color: #dee2e6; 
+}
+
+.pagination-gray .page-link:hover {
+  background-color: #e9ecef; 
+}
+
+.pagination-gray .page-item.active .page-link {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border-color: #7b7d7f;
+}
+</style>
