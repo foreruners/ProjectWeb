@@ -9,13 +9,23 @@ export default {
 </script>
 
 <template>
-  <div class="container d-flex justify-content-between bg-secondary text-light  fixed-bottom ">
-    <div>
-      <SocialMedia class="bi-xs"></SocialMedia>
-    </div>
-    <p class="mb-0 d-flex align-items-center">Man Boutique</p>
-    <p class="mb-0 d-flex align-items-center">© 2023 Man Boutique</p>
-  </div>
+
+  <footer class="bg-dark text-white p-1 mt-auto">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <div>
+                      <p class="mb-0 d-flex align-items-center">By Ricardo, Wilson e Filipe</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <p class="mb-0 d-flex align-items-center">Man Boutique</p>
+                      <p class="mb-0 d-flex align-items-center">© 2023 Man Boutique</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>
 
 <style scoped>
