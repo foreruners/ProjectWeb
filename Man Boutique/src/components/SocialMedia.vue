@@ -1,12 +1,12 @@
 <template>
     <div class="social-links">
-      <a href="#" class="text-decoration-none me-2">
+      <a href="https://www.facebook.com/" target="_blank" class="text-decoration-none me-2">
         <i class="bi bi-facebook"></i>
       </a>
-      <a href="#" class="text-decoration-none me-2">
+      <a href="https://twitter.com/" target="_blank" class="text-decoration-none me-2">
         <i class="bi bi-twitter"></i>
       </a>
-      <a href="#" class="text-decoration-none me-2">
+      <a href="https://example.com/rss" target="_blank" class="text-decoration-none me-2">
         <i class="bi bi-rss"></i>
       </a>
     </div>
@@ -20,8 +20,8 @@
   
   <style scoped>
   .social-links {
-    font-size: 24px; /* Ajuste conforme necessário */
-    color: #007bff; /* Cor padrão dos links do Bootstrap */
+    font-size: 24px;
+    color: #007bff;
   }
   </style>
   
