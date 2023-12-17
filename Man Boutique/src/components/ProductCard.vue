@@ -4,11 +4,7 @@
       <img class="card-img-top" :src="product.image" alt="Product Image" data-toggle="modal" :data-target="'#myModal' + product.id"/>
       <div class="card-body p-4">
         <div class="d-flex justify-content-center small text-warning mb-2">
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
+          <RatingStars :objectId="product.id" />
         </div>
         <div class="text-center">
           <h5 class="fw-bolder">{{ product.name }}</h5>
@@ -53,6 +49,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import { useCartStore } from '../store/CartStore';
+import RatingStars from './RatingStars.vue';
 
 const props = defineProps(['product']);
 const cartStore = useCartStore();

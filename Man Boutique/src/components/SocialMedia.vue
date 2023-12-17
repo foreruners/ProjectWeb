@@ -1,12 +1,12 @@
 <template>
-    <div class="social-links">
-      <a href="https://www.facebook.com/" target="_blank" class="text-decoration-none me-2">
+    <div class="social-links ">
+      <a href="https://www.facebook.com/" target="_blank" class="text-decoration-none me-2 p-1">
         <i class="bi bi-facebook"></i>
       </a>
-      <a href="https://twitter.com/" target="_blank" class="text-decoration-none me-2">
+      <a href="https://twitter.com/" target="_blank" class="text-decoration-none me-2 p-1">
         <i class="bi bi-twitter"></i>
       </a>
-      <a href="https://example.com/rss" target="_blank" class="text-decoration-none me-2">
+      <a href="https://example.com/rss" target="_blank" class="text-decoration-none me-2 p-1">
         <i class="bi bi-rss"></i>
       </a>
     </div>

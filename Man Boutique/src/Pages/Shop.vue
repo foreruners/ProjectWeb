@@ -71,8 +71,8 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 
-console.log(cartStore.products);
-console.log(productStore.products);
+// console.log(cartStore.products);
+// console.log(productStore.products);
 </script>
 
 <style scoped>
