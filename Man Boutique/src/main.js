@@ -3,6 +3,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router/index.js';
 import axios from 'axios';
+import { useCartStore } from './store/CartStore.js';
 
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,5 +18,8 @@ const app = createApp(App);
 app.use(pinia); 
 app.use(router).mount('#app');
 app.config.globalProperties.$axios = axios;
+const cartStore = useCartStore();
+// Load the cart from localStorage when the app starts
+cartStore.cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export { pinia };

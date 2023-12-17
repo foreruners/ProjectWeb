@@ -14,6 +14,7 @@ export const useProductStore = defineStore({
 
       try {
         const response = await axios.get('http://127.0.0.1:3333/products');
+        
 
         const getProducts = response.data.map(product => ({
           ...product,

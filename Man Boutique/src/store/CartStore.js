@@ -27,6 +27,7 @@ export const useCartStore = defineStore({
                                                                                       //console.log('Product in store:', productInStore);
           if (!productInStore) {
           console.error('Product not found in the store:', product.id);
+          this.saveCartToLocalStorage();
           return;
         }
     
@@ -39,7 +40,7 @@ export const useCartStore = defineStore({
           console.log('Cart:', this.cart);
         } else {
                                                                                       //console.log('Not enough stock available.');
-          alert('Not enough stock available2.');
+          alert('Not enough stock available.');
         }
       } else {
         const productInStore = productStore.products.find(p => p.id === product.id);
@@ -53,7 +54,11 @@ export const useCartStore = defineStore({
           alert('Not enough stock available.');
         }
       }
-      
+      this.saveCartToLocalStorage();
+    },
+
+    saveCartToLocalStorage() {
+      localStorage.setItem('cart', JSON.stringify(this.cart));
     },
     
 
