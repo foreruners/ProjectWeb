@@ -1,5 +1,5 @@
 <template>
-  <div class="card h-100 d-flex flex-column align-items-end">
+  <div class="card h-100 d-flex flex-column align-items-end mt-4 bg-secondary">
     <div >
       <img class="card-img-top" :src="product.image" alt="Product Image" data-toggle="modal" :data-target="'#myModal' + product.id"/>
       <div class="card-body p-4">
@@ -32,11 +32,20 @@
             <img class="card-img" :src="product.image" alt="Product Image" />
           </div>
           <div class="col-md-6">
+            
             <p>{{ product.description }}</p>
+            <RatingStars :objectId="product.id" class="pb-2"/>
             <p>Price: €{{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>Rating: {{ product.rating }}</p>
+            <div class="d-flex">
+              <a class="btn btn-outline-dark" href="#" @click="addToCartHandler(product.id)">Add to cart</a>
+
+            <RouterLink class="nav-link active" to="/cart">
+            <i class="bi bi-cart4"></i> 
+            </RouterLink>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -64,7 +73,7 @@ const addToCartHandler = (productId) => {
 
 <style>
 .card-img-top {
-  height: 300px;
+  height: 250px;
   object-fit: cover;
   padding: 1.5rem;
 }
