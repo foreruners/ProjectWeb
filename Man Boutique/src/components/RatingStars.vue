@@ -5,7 +5,6 @@
       :key="index"
       class="star"
       :class="{ filled: index <= rating }"
-      @click="setRating(index)"
     >
       <i class="bi bi-star-fill"></i>
     </span>
@@ -14,22 +13,14 @@
 
 <script setup>
 import { defineProps } from 'vue';
-import { useRatingStore } from '../store/RatingStore';
+import { useProductStore } from '../store/ProductStore';
 
-const ratingStore = useRatingStore();
 const objectId = defineProps(['objectId']);
+const productStore = useProductStore();
 
+const product = productStore.products.find((product) => product.id === objectId.objectId);
 
-
-const rating = ratingStore.calculateAverageRating(objectId.objectId) || 0;
-
-
-
-const setRating = (value) => {
-  ratingStore.setRating(objectId.objectId, value);
-};
-
-
+const rating = product.rating; 
 
 
 
