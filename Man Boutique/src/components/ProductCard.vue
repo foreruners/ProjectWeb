@@ -64,9 +64,13 @@ const props = defineProps(['product']);
 const cartStore = useCartStore();
 
 const addToCartHandler = (productId) => {
-  console.log(productId);
-  cartStore.addToCart(props.product);
-  
+  const productAdded = cartStore.addToCart(props.product);  
+    if (productAdded) {
+
+      alert(`${props.product.name} added to cart`);
+    
+    } 
+
 };
 
 </script>
