@@ -1,3 +1,13 @@
+<script setup>
+import GridGallery from '../components/GridGallery.vue';
+</script>
+
 <template>
-    About
+    <GridGallery></GridGallery>
 </template>
+
+<style scoped>
+
+
+
+</style>
