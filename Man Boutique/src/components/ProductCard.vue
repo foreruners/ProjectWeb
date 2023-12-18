@@ -1,23 +1,19 @@
 <template>
-  <div class="card h-100">
+  <div class="card h-100 d-flex flex-column align-items-end mt-4 bg-secondary">
     <div >
       <img class="card-img-top" :src="product.image" alt="Product Image" data-toggle="modal" :data-target="'#myModal' + product.id"/>
       <div class="card-body p-4">
         <div class="d-flex justify-content-center small text-warning mb-2">
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
-          <div class="bi-star-fill"></div>
+          <RatingStars :objectId="product.id" />
         </div>
         <div class="text-center">
           <h5 class="fw-bolder">{{ product.name }}</h5>
           Price: €{{ product.price }} - Quantity: {{ product.quantity }}
         </div>
       </div>
-      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" @click="addToCartHandler(product.id)">Add to cart</a></div>
-      </div>
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent ">
+    <div class="text-center"><a class="btn btn-outline-dark" href="#" @click="addToCartHandler(product.id)">Add to cart</a></div>
+ </div>
     </div>
 
     <!-- Bootstrap Modal -->
@@ -36,11 +32,20 @@
             <img class="card-img" :src="product.image" alt="Product Image" />
           </div>
           <div class="col-md-6">
+            
             <p>{{ product.description }}</p>
+            <RatingStars :objectId="product.id" class="pb-2"/>
             <p>Price: €{{ product.price }}</p>
             <p>Quantity: {{ product.quantity }}</p>
-            <p>Rating: {{ product.rating }}</p>
+            <div class="d-flex">
+              <a class="btn btn-outline-dark" href="#" @click="addToCartHandler(product.id)">Add to cart</a>
+
+            <RouterLink class="nav-link active" to="/cart">
+            <i class="bi bi-cart4"></i> 
+            </RouterLink>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -53,6 +58,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import { useCartStore } from '../store/CartStore';
+import RatingStars from './RatingStars.vue';
 
 const props = defineProps(['product']);
 const cartStore = useCartStore();
@@ -67,7 +73,7 @@ const addToCartHandler = (productId) => {
 
 <style>
 .card-img-top {
-  height: 300px;
+  height: 250px;
   object-fit: cover;
   padding: 1.5rem;
 }
