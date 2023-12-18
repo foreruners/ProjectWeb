@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <footer class="myConteiner d-flex justify-content-between bg-dark text-light">
+  <footer class="myConteiner d-flex justify-content-between text-light">
     
     <p class="mb-0 d-flex align-items-center">© 2023 Man Boutique</p>
 
@@ -33,5 +33,7 @@ p {
   padding-top: 2px;
   padding-bottom: 2px;
   margin-top: 40px;
+
+  background-color: rgba(9, 3, 39, 0.8);
 }
 </style>
