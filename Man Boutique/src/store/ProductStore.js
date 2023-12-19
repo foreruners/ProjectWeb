@@ -9,7 +9,11 @@ export const useProductStore = defineStore({
     error: null,
   }),
   actions: {
+
+    
     async fetchProducts() {
+
+      
       this.loading = true;
 
       try {
@@ -21,6 +25,8 @@ export const useProductStore = defineStore({
         }));
 
         this.products = getProducts;
+        localStorage.setItem('products', JSON.stringify(this.products));
+
         this.error = null;
       } catch (error) {
         console.error('Error fetching products:', error);
