@@ -15,19 +15,21 @@ try {
 }
 
 export const useCartStore = defineStore({
-  id: 'cartStore',
+  id: "cartStore",
   state: () => ({
     cart: JSON.parse(localStorage.getItem('cart')) || [],
     products: products,
   }),
   getters: {
     totalQuantity() {
+      //return this.cart.length
       return this.cart.reduce((total, product) => total + product.quantity, 0);
     },
   },
   actions: {
     addToCart(product) {
-      const existingProduct = this.cart.find(item => item.id === product.id);
+      //verifica se produto já existe no carrinho
+      const existingProduct = this.cart.find((item) => item.id === product.id);
       const productStore = useProductStore();
       const productInStore = findProductInStore(productStore, product.id);
                                                                                                                       //console.log('productId:', product.id);
@@ -51,18 +53,18 @@ export const useCartStore = defineStore({
           
           return;
         }
-    
+
+        //verifica se tem stock disponível
         const availableStock = productInStore.quantity;
-                                                                                      //console.log('Available stock:', availableStock);    
-                                                                                      //console.log('Product in store:', productInStore.quantity);
-    
+        
         if (availableStock > 0) {
+          //se tiver stock adiciona ao carrinho
           this.cart.push({ ...productInStore, quantity: 1 });
           productInStore.quantity -= 1; 
                                                                                         //console.log('Cart:', this.cart);
         } else {
-                                                                                      //console.log('Not enough stock available.');
-          alert('Not enough stock available.');
+          //console.log('Not enough stock available.');
+          alert("Not enough stock available.");
         }
       } else {
         
@@ -82,7 +84,7 @@ export const useCartStore = defineStore({
     },
 
     saveCartToLocalStorage() {
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+      localStorage.setItem("cart", JSON.stringify(this.cart));
     },
 
     saveProductsToLocalStorage() {
