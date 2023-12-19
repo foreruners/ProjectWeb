@@ -4,18 +4,18 @@
         <div class="row">
             <div class="col-9">
                 <div v-if="cartItems.length === 0">
-                    <p>Your cart is empty.</p>
+                    <p>Cart is empty.</p>
                 </div>
                 <div v-else class="show">
                     <div class="cart-items">
                         <div class="card">
                             <div class="card-body">
-                                <ul class="list-group list-group-flush" style="max-height: 400px; overflow: auto;">
+                                <ul class="list-group list-group-flush" style="max-height: 500px; overflow: auto;">
                                     <li v-for="item in cartItems" :key="item.id">
                                         <div class="item-details pb-1">
                                             <div class="row">
                                                 <div class="col-2 text-start">
-                                                    <img :src="item.image" />
+                                                    <img :src="item.image" class="small-image" />
                                                 </div>
                                                 <div class="col-3">
                                                     {{ item.name }}
@@ -27,7 +27,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <button class="btn btn-light"
-                                                                @click="removeFromCart(item)">-</button>
+                                                                @click="decrement(item.id)">-</button>
                                                         </div>
                                                         <div class="col">
                                                             <div class="pt-2">
@@ -36,11 +36,11 @@
                                                         </div>
                                                         <div class="col ">
                                                             <button class="btn btn-light"
-                                                                @click="addInCard(item)">+</button>
+                                                                @click="increment(item.id)">+</button>
                                                         </div>
-                                                        <div class="col ">
+                                                        <div class="col text-end">
                                                             <button class="btn btn-light"
-                                                                @click="deletedItem(item)">Delete</button>
+                                                                @click="removeItem(item.id)">Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -59,16 +59,16 @@
                 <div class="row pb-5 ps-5 text-start">
                     <div class="cart-cupons">
                         <h3>Cupons</h3>
-                        <input type="text" v-model="getCouponCode" placeholder="Enter coupon code" />
-                        <button @click="checkCoupons">Apply</button>
-                    </div>
+                        <input type="text" v-model="couponCode" placeholder="Enter coupon code" />
+                        <button @click="">Apply</button>
+                        </div>
                 </div>
                 <div class="row pt-5 ps-5 text-start">
                     <div class="cart-total">
-                        <p>Total Price: {{ }}€ </p>
-                        <p>Discount: {{ }}€ </p>
-                        <p>Total: {{ }}€ </p>
-                        <button @click="checkout">Checkout</button>
+                        <p>Total Price: {{ totalPrice}}€ </p>
+                        <p>Discount: {{discount1 }}€ </p>
+                        <p>Total: {{ total}}€ </p>
+                        <button @click="">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -76,80 +76,31 @@
     </div>
 </template>
 
-<script >
-import Api from '../services/api.js';
-export default {
-    data() {
-        return {
-         
-            // for testing purposes
-            cartItems: [
-                { id: 1, name: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", price: 10, quantity: 1, image: "item2.jpg" },
-                { id: 2, name: "Item 2", price: 20, quantity: 2, image: "item2.jpg" },
-                { id: 3, name: "Item 3", price: 15, quantity: 1, image: "item3.jpg" },
-                { id: 4, name: "Item 4", price: 12, quantity: 3, image: "item4.jpg" },
-                { id: 5, name: "Item 5", price: 8, quantity: 2, image: "item5.jpg" },
-                { id: 6, name: "Item 6", price: 15, quantity: 1, image: "item6.jpg" },
-                { id: 7, name: "Item 7", price: 10, quantity: 4, image: "item7.jpg" },
-                { id: 8, name: "Item 8", price: 18, quantity: 2, image: "item8.jpg" },
-                { id: 8, name: "Item 8", price: 18, quantity: 2, image: "item8.jpg" },
-                { id: 9, name: "Item 9", price: 25, quantity: 3, image: "item9.jpg" },
-                { id: 10, name: "Item 10", price: 30, quantity: 1, image: "item10.jpg" },
-                { id: 11, name: "Item 11", price: 15, quantity: 2, image: "item11.jpg" },
-                { id: 12, name: "Item 12", price: 22, quantity: 1, image: "item12.jpg" }
-                      
-            ]
-        };
-    },
-    methods: {
-        removeFromCart(item) {
-            // Remove item from cart
-            const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-            if (index !== -1) {
-                this.cartItems.splice(index, 1);
-            }
-        },
-        addInCard(item) {
-            // Add item to cart
-                const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-                if (index !== -1) {
-                    this.cartItems[index].quantity += 1;
-                }
-            
-        },
-        deletedItem(item) {
-            // Delete item from cart
-            const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-            if (index !== -1)
-             {
-                 this.cartItems.splice(index, 1);
-            }
-        },
-        getTotalPrice() {
-            // Calculate total price of items in cart
-            this.totalPrice = this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-       
-        },
-        getTotal()
-        {
-            //total = totalPrice - discount
-        },
-        checkout() {
-            // Perform checkout process
-           
+<script setup>
+//import axios from 'axios';
+import { defineProps , computed, ref} from 'vue';
+import { useCartStore } from '../store/CartStore';
 
-            
-            this.cartItems = [];      
-          
-        },
-        checkCoupons()
-         {
-            // Check if cupon is valid
-            
-        }
 
-    }
-}
+const props = defineProps(['product']);
+const cartStore = useCartStore();
+const cartItems = cartStore.cart;
+const increment = cartStore.incrementQuantity;
+const decrement = cartStore.decrementQuantity;
+const removeItem = cartStore.removeFromCart;
+let couponCode = ref('');
+//console.log(couponCode.value);
+
+
+const totalPrice = computed(() => {
+  return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
+});
+
+
+const discount1 = 0;
+const total = computed(() => {
+  return (totalPrice.value - discount1).toFixed(2);
+});
 
 </script>
 
@@ -157,6 +108,10 @@ export default {
 <style scoped>
 .row {
     background-color: rgb(246, 245, 245);
+}
+.small-image {
+    width: 50px;
+    height: 50px;
 }
 </style>
 

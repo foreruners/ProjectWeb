@@ -16,7 +16,8 @@ export default class Api {
 
             if (response.data.success) {
                 alert('Coupon is valid');
-                this.discount = response.data.discount; // store the discount for later use
+                 
+                return response.data.discount;
             } else {
                 alert('Coupon is not valid');
             }
@@ -25,7 +26,18 @@ export default class Api {
             console.error(error);
         }
 
+        
+    }
 
+    static async doCheckout(data)
+    {
+        try {
+            const response = await axios.post(url + 'checkout', data);
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+        }
     }
 
 
