@@ -7,7 +7,7 @@
     </div>
 
     <!-- Custom Pagination -->
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" class="pagination">
       <ul class="pagination justify-content-center pagination-gray">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous" @click="goToPreviousPage">
@@ -39,7 +39,7 @@ import { ref, computed } from 'vue';
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
-const itemsPerPage = 10; 
+const itemsPerPage = 12; 
 const currentPage = ref(1);
 
 
@@ -81,6 +81,11 @@ onMounted(() => {
   border-color: #dee2e6; 
 }
 
+.pagination {
+  justify-content: center;
+  padding-top: 1rem;
+
+}
 .pagination-gray .page-link:hover {
   background-color: #e9ecef; 
 }
