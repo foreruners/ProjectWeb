@@ -54,6 +54,7 @@ export const useCartStore = defineStore({
         if (availableStock > 0) {
 
           this.cart.push({ ...productInStore, quantity: 1 });
+          alert("Product added to cart.");s
 
         } else {
 
@@ -69,6 +70,7 @@ export const useCartStore = defineStore({
 
         if (availableStock > 0) {
           existingProduct.quantity += 1;
+          alert("Product added to cart.");
 
         } else {
           alert("Not enough stock available.");
