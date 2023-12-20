@@ -40,19 +40,22 @@ export default class Api {
 
     static async doCheckout(data)
     {
-        if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
-            throw new Error('Invalid data format for checkout.');
-          }
+       // if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
+       //     throw new Error('Invalid data format for checkout.');
+       //   }
 
         try {
+            
+
             const response = await axios.post('http://localhost:3333/checkout', data);
+            
             
             alert('Checkout done');
             cartStore.clearCart();
             localStorage.clear();
         } catch (error) {
             console.error(error);
-            alert('Checkout failed');
+            alert('Checkout failed ' + error.error);
         }
     }
 

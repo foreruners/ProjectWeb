@@ -98,6 +98,8 @@ let couponCode = ref('');
 
 
 
+
+
 const totalPrice = computed(() => {
   return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
 });
@@ -107,12 +109,14 @@ let discount1 = ref(0);
 
 const applyCoupon = async () => {
   discount1.value = await Api.checkCoupons(couponCode.value);
+  console.log(couponCode.value);
 };
 const total = computed(() => {
   return (totalPrice.value - (totalPrice.value * discount1.value/100)).toFixed(2);
 });
 
 const checkout = async () => {
+    console.log(couponCode.value);
   const data = {
     products: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
     coupon: couponCode.value,
