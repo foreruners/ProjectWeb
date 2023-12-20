@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-        <div class="card-container m-2">
+        <div class="card-container ">
             <img class="card-img-top" :src="product.image" />
             <p class="product-name">{{ product.name }}</p>
         </div>
@@ -35,7 +35,7 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.3); 
+  background-color: rgba(9, 3, 39, 0.6); 
   color: white;
   padding: 5px;
   margin: 0;
