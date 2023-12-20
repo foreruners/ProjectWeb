@@ -1,51 +1,56 @@
 <template>
     <div class="cart container text-center mt-5 mb-5 p-5">
-        <h1 class="text-start">Shopping Cart</h1>
-        <div class="row">
-            <div class="col-9">
+         <div class="row">
+            <div class="col-12 col-md-9">
                 <div v-if="cartItems.length === 0">
-                    <p>Cart is empty.</p>
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="text-start">Shopping Cart</h3>
+                      </div>
+                      <div class="card-body">
+                        <p>Cart is empty.</p>
+                      </div>
+                    </div>
+                    
                 </div>
                 <div v-else class="show">
                     <div class="cart-items">
                         <div class="card">
+                            <div class="card-header">
+                                 <h3 class="text-start">Shopping Cart</h3>
+                            </div>
                             <div class="card-body">
-                                <ul class="list-group list-group-flush" style="max-height: 500px; overflow: auto;">
+                                <ul class="list-group list-group-flush" style="max-height: 60vh; overflow: auto;">
                                     <li v-for="item in cartItems" :key="item.id">
                                         <div class="item-details pb-1">
                                             <div class="row">
-                                                <div class="col-2 text-start">
-                                                    <img :src="item.image" class="small-image" />
+                                                <div class="col-12 col-md-2 text-start">
+                                                    <img :src="item.image" style="max-width: 10vw;" class="img-fluid" alt="Product Image" />
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-12 col-md-3">
                                                     {{ item.name }}
                                                 </div>
-                                                <div class="col">
-
-                                                </div>
-                                                <div class="col text-end">
+                                                <div class="col-12 col-md-4  text-end">
                                                     <div class="row">
-                                                        <div class="col">
-                                                            <button class="btn btn-light"
+                                                        <div class="col-6 col-md-3">
+                                                            <button class="btn btn-light btn-sm"
                                                                 @click="decrement(item.id)">-</button>
                                                         </div>
-                                                        <div class="col">
+                                                        <div class="col-6 col-md-3">
                                                             <div class="pt-2">
                                                                 {{ item.quantity }}
                                                             </div>
                                                         </div>
-                                                        <div class="col ">
-                                                            <button class="btn btn-light"
+                                                        <div class="col-6 col-md-3 ">
+                                                            <button class="btn btn-light btn-sm"
                                                                 @click="increment(item.id)">+</button>
                                                         </div>
-                                                        <div class="col text-end">
-                                                            <button class="btn btn-light"
+                                                        <div class="col-6 col-md-3">
+                                                            <button class="btn btn-light btn-sm"
                                                                 @click="removeItem(item.id)">Delete</button>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </li>
@@ -55,20 +60,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="row pb-5 ps-5 text-start">
-                    <div class="cart-cupons">
+            <div class="col-12 col-md-3">
+                <div class="row pb-3 text-start">
+                    <div class="cart-cupons col-md-12">
                         <h3>Cupons</h3>
                         <input type="text" v-model="couponCode" placeholder="Enter coupon code" />
-                        <button @click="">Apply</button>
+                        <button @click="applyCoupon" class="btn btn-primary">Apply</button>
                         </div>
                 </div>
-                <div class="row pt-5 ps-5 text-start">
-                    <div class="cart-total">
+                <div class="row pt-3 text-start">
+                    <div class="cart-total col-md-12">
                         <p>Total Price: {{ totalPrice}}€ </p>
-                        <p>Discount: {{discount1 }}€ </p>
+                        <p>Discount: {{discount1 }}% </p>
                         <p>Total: {{ total}}€ </p>
-                        <button @click="">Checkout</button>
+                        <button @click="checkout" class="btn btn-primary btn-block">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -77,9 +82,9 @@
 </template>
 
 <script setup>
-//import axios from 'axios';
 import { defineProps , computed, ref} from 'vue';
 import { useCartStore } from '../store/CartStore';
+import Api from '../services/api.js';
 
 
 const props = defineProps(['product']);
@@ -89,7 +94,8 @@ const increment = cartStore.incrementQuantity;
 const decrement = cartStore.decrementQuantity;
 const removeItem = cartStore.removeFromCart;
 let couponCode = ref('');
-//console.log(couponCode.value);
+
+
 
 
 const totalPrice = computed(() => {
@@ -97,10 +103,23 @@ const totalPrice = computed(() => {
 });
 
 
-const discount1 = 0;
+let discount1 = ref(0);
+
+const applyCoupon = async () => {
+  discount1.value = await Api.checkCoupons(couponCode.value);
+};
 const total = computed(() => {
-  return (totalPrice.value - discount1).toFixed(2);
+  return (totalPrice.value - (totalPrice.value * discount1.value/100)).toFixed(2);
 });
+
+const checkout = async () => {
+  const data = {
+    products: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
+    coupon: couponCode.value,
+  };
+
+  await Api.doCheckout(data);
+};
 
 </script>
 
