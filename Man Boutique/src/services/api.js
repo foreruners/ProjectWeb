@@ -1,3 +1,9 @@
+import axios from 'axios';
+import { useCartStore } from '../store/CartStore';
+
+const cartStore = useCartStore();
+
+
 export default class Api {
     static headers = {
         'Accept': 'application/json',
@@ -5,13 +11,13 @@ export default class Api {
 
     }
 
-    static url = 'http://localhost:3333/';
+    
 
     static async checkCoupons(couponCode) 
     {
 
         try {
-            const response = await axios.post(url + 'check-coupon', { couponCode: couponCode });
+            const response = await axios.post('http://localhost:3333/check-coupon', { couponCode: couponCode });
             console.log(response);
 
             if (response.data.success) {
@@ -20,10 +26,13 @@ export default class Api {
                 return response.data.discount;
             } else {
                 alert('Coupon is not valid');
+                return 0;
             }
 
         } catch (error) {
             console.error(error);
+            alert('Coupon is not valid');
+            return 0;
         }
 
         
@@ -31,12 +40,19 @@ export default class Api {
 
     static async doCheckout(data)
     {
+        if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
+            throw new Error('Invalid data format for checkout.');
+          }
+
         try {
-            const response = await axios.post(url + 'checkout', data);
-            console.log(response);
-            return response.data;
+            const response = await axios.post('http://localhost:3333/checkout', data);
+            
+            alert('Checkout done');
+            cartStore.clearCart();
+            localStorage.clear();
         } catch (error) {
             console.error(error);
+            alert('Checkout failed');
         }
     }
 
@@ -44,7 +60,7 @@ export default class Api {
     static async getProducts() 
     {
         try {
-            const response = await axios.get(url + 'products');
+            const response = await axios.get('http://localhost:3333/products');
             console.log(response);
             return response.data;
         } catch (error) {
