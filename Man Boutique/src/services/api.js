@@ -21,17 +21,17 @@ export default class Api {
             console.log(response);
 
             if (response.data.success) {
-                alert('Coupon is valid');
+                alert(response.data.message);
                  
                 return response.data.discount;
             } else {
-                alert('Coupon is not valid');
+                alert(response.data.message);
                 return 0;
             }
 
         } catch (error) {
             console.error(error);
-            alert('Coupon is not valid');
+            alert('Coupon invalid: ' + error.message);
             return 0;
         }
 
@@ -50,12 +50,12 @@ export default class Api {
             const response = await axios.post('http://localhost:3333/checkout', data);
             
             
-            alert('Checkout done');
+            alert(response.data.message);
             cartStore.clearCart();
             localStorage.clear();
         } catch (error) {
             console.error(error);
-            alert('Checkout failed ' + error.error);
+            alert('Checkout failed: ' + error.message);
         }
     }
 
