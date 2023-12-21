@@ -11,7 +11,6 @@
                         <p>Cart is empty.</p>
                       </div>
                     </div>
-                    
                 </div>
                 <div v-else class="show">
                     <div class="cart-items">
@@ -23,15 +22,15 @@
                                 <ul class="list-group list-group-flush" style="max-height: 60vh; overflow: auto;">
                                     <li v-for="item in cartItems" :key="item.id">
                                         <div class="item-details pb-1">
-                                            <div class="row">
+                                            <div class="row" >
                                                 <div class="col-12 col-md-2 text-start">
-                                                    <img :src="item.image" style="max-width: 10vw;" class="img-fluid" alt="Product Image" />
+                                                    <img :src="item.image" style="max-width: 5vw;" class="img-fluid" alt="Product Image" />
                                                 </div>
-                                                <div class="col-12 col-md-3">
+                                                <div class="col-12 col-md-3 " >
                                                     {{ item.name }}
                                                 </div>
                                                 <div class="col-12 col-md-4  text-end">
-                                                    <div class="row">
+                                                    <div class="row" >
                                                         <div class="col-6 col-md-3">
                                                             <button class="btn btn-light btn-sm"
                                                                 @click="decrement(item.id)">-</button>
@@ -61,13 +60,13 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="row pb-3 text-start">
-                    <div class="cart-cupons col-md-12">
-                        <h3>Cupons</h3>
-                        <input type="text" v-model="couponCode" placeholder="Enter coupon code" />
-                        <button @click="applyCoupon" class="btn btn-primary">Apply</button>
+                    <div class="row pb-3 text-start">
+                        <div class="cart-cupons col-md-12">
+                            <h3>Cupons</h3>
+                            <input type="text" v-model="couponCode" placeholder="Enter coupon code" />
+                            <button @click="applyCoupon" class="btn btn-primary">Apply</button>
                         </div>
-                </div>
+                    </div>
                 <div class="row pt-3 text-start">
                     <div class="cart-total col-md-12">
                         <p>Total Price: {{ totalPrice}}€ </p>
@@ -93,7 +92,8 @@ const cartItems = cartStore.cart;
 const increment = cartStore.incrementQuantity;
 const decrement = cartStore.decrementQuantity;
 const removeItem = cartStore.removeFromCart;
-let couponCode = ref('');
+const couponCode = ref('');
+const discount1 = ref(0);
 
 
 
@@ -105,8 +105,6 @@ const totalPrice = computed(() => {
 });
 
 
-let discount1 = ref(0);
-
 const applyCoupon = async () => {
   discount1.value = await Api.checkCoupons(couponCode.value);
   console.log(couponCode.value);
@@ -114,6 +112,7 @@ const applyCoupon = async () => {
 const total = computed(() => {
   return (totalPrice.value - (totalPrice.value * discount1.value/100)).toFixed(2);
 });
+
 
 const checkout = async () => {
     console.log(couponCode.value);
@@ -132,9 +131,8 @@ const checkout = async () => {
 .row {
     background-color: rgb(246, 245, 245);
 }
-.small-image {
-    width: 50px;
-    height: 50px;
+#appSummary{
+    justify-content:center;
 }
 </style>
 
