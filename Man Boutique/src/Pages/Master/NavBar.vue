@@ -33,7 +33,7 @@ const cartStore = useCartStore();
           </li>
           <li class="nav-item">
             <RouterLink to="/about" class="nav-link" :class="{ 'active': $route.path === '/about' }">
-              <i class="bi bi-info-circle"></i> About
+              <i class="bi bi-info-circle"></i> About Us
             </RouterLink>
           </li>
         </ul>
@@ -80,7 +80,7 @@ const cartStore = useCartStore();
 }
 
 .navbar {
-  background-color: rgba(9, 3, 39, 0.8);
+  background-color: rgba(9, 3, 39, 0.94);
 }
 
 </style>

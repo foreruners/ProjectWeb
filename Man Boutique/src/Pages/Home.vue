@@ -1,5 +1,11 @@
-<script setup>
+<script>
 import GridSample from '../components/GridSample.vue';
+
+export default {
+  components: {
+    GridSample
+  }
+};
 </script>
 
 <template>
