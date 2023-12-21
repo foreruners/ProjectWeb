@@ -43,7 +43,6 @@ const cartStore = useCartStore();
             <RouterLink to="/" class="navbar-brand" >Man Boutique</RouterLink>
           </li>
         </ul>
-
         <ul class="navbar-nav">
           <RouterLink to="/cart" class="nav-link" :class="{ 'active': $route.path === '/cart' }">
             <i class="bi bi-cart4"></i> Cart ({{ cartStore.totalQuantity }})
@@ -84,3 +83,4 @@ const cartStore = useCartStore();
 }
 
 </style>
+
