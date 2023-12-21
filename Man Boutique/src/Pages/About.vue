@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <div class="about-section py-5 bg-light">
+    <div class="about-section py-5">
         <div class="container">
             <h2 class="section-title text-center mb-4">About Us</h2>
             <div class="row mb-5 align-items-center">
