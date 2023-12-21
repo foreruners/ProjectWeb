@@ -11,7 +11,7 @@ export default {
 <template>
   <footer class="myConteiner d-flex justify-content-between text-light">
     
-    <p class="mb-0 d-flex align-items-center">© 2023 Man Boutique</p>
+    <p class="mb-0 d-flex align-items-center">© 2023 All rights reserved.</p>
 
     <p class="mb-0 d-flex align-items-center">Man Boutique</p>
     
@@ -32,7 +32,6 @@ p {
   padding-right: 2%;
   padding-top: 2px;
   padding-bottom: 2px;
-  margin-top: 40px;
 
   background-color: rgba(9, 3, 39, 0.8);
 }

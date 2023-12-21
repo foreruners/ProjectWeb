@@ -29,10 +29,12 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
 }
 
 .content {
   flex: 1;
-  margin-top: 56px;
+  margin-top: 51px;
+  background-color: rgba(9, 3, 39, 0.1);
 }
 </style>

@@ -13,55 +13,62 @@ const cartStore = useCartStore();
       <span class="navbar-toggler-icon"></span>
     </button>
 
-      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
 
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <RouterLink to="/" class="nav-link" :class="{ 'active': $route.path === '/' }">
-              <i class="bi bi-house"></i> Home
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/shop" class="nav-link" :class="{ 'active': $route.path === '/shop' }">
-              <i class="bi bi-shop-window"></i> Shop
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/contact" class="nav-link" :class="{ 'active': $route.path === '/contact' }">
-              <i class="bi bi-telephone"></i> Contact
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/about" class="nav-link" :class="{ 'active': $route.path === '/about' }">
-              <i class="bi bi-info-circle"></i> About Us
-            </RouterLink>
-          </li>
-        </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <RouterLink to="/" class="nav-link" :class="{ 'active': $route.path === '/' }">
+            <i class="bi bi-house"></i> Home
+          </RouterLink>
+        </li>
+        <li class="nav-item">
+          <RouterLink to="/shop" class="nav-link" :class="{ 'active': $route.path === '/shop' }">
+            <i class="bi bi-shop-window"></i> Shop
+          </RouterLink>
+        </li>
+        <li class="nav-item">
+          <RouterLink to="/contact" class="nav-link" :class="{ 'active': $route.path === '/contact' }">
+            <i class="bi bi-telephone"></i> Contact
+          </RouterLink>
+        </li>
+        <li class="nav-item">
+          <RouterLink to="/about" class="nav-link" :class="{ 'active': $route.path === '/about' }">
+            <i class="bi bi-info-circle"></i> About Us
+          </RouterLink>
+        </li>
+      </ul>
 
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item d-none d-lg-block">
-            <RouterLink to="/" class="navbar-brand" >Man Boutique</RouterLink>
-          </li>
-        </ul>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item d-none d-lg-block">
+          <RouterLink to="/" class="navbar-brand"><img src="../../imgs/myIcon.png" alt="Logo" class="nav-logo">
+          </RouterLink>
+        </li>
+      </ul>
 
-        <ul class="navbar-nav">
+      <ul class="navbar-nav">
+        <li>
           <RouterLink to="/cart" class="nav-link" :class="{ 'active': $route.path === '/cart' }">
             <i class="bi bi-cart4"></i> Cart ({{ cartStore.totalQuantity }})
           </RouterLink>
-        </ul>
+        </li>
+      </ul>
 
-      </div>
+    </div>
 
   </nav>
 </template>
 
 <style scoped>
-
 .nav-link {
   position: relative;
   display: inline-block;
   padding-bottom: 3px;
   transition: all 0.2s;
+}
+
+.nav-logo {
+  max-height: 30px;
+  width: auto;
 }
 
 .nav-link::before {
@@ -83,4 +90,13 @@ const cartStore = useCartStore();
   background-color: rgba(9, 3, 39, 0.94);
 }
 
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+.navbar-nav.mx-auto {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 </style>

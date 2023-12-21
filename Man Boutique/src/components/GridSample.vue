@@ -38,6 +38,7 @@ export default {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(9, 3, 39, 0.8);
+  background-color: white;
 }
 
 .card-content {

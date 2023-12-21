@@ -36,8 +36,6 @@ export default {
     <h1 class="text-center p-4">Best sellers</h1>
     <GridSample></GridSample>
   </div>
-
-  <h1 style="text-align: center; color: chartreuse;">Loking for some ideas</h1>
   
 </template>
   
