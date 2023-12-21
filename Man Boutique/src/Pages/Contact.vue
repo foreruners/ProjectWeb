@@ -1,13 +1,27 @@
+<script>
+export default {
+  methods: {
+    openEmail(emailAddress) {
+      window.location.href = `mailto:${emailAddress}`;
+    }
+  }
+};
+</script>
+
 <template>
   <div class="contact-header text-white text-center">
   </div>
   <div class="contact-main container">
     <div class="contact-main container mt-4">
 
+      <h1 class="text-center mb-5">Contact Us</h1>
+
+      <hr>
+
       <div class="row justify-content-around">
 
         <div class="contact-form col-12 col-md-5 mb-4 d-flex flex-column justify-content-around">
-          <h2>Contact Form</h2>
+          <h2>Fill the form</h2>
           <form class="d-flex flex-column flex-grow-1">
             <div class="mb-3 flex-grow-1">
               <input type="text" placeholder="Name" id="name" name="name" class="form-control" required>
@@ -27,10 +41,10 @@
         </div>
 
         <div class="contact-info col-12 col-md-5 mb-4">
-          <h2>Contact Information</h2>
-          <p>Man Boutique</p>
-          <p>Email: manboutique@email.com</p>
-          <p>Phone: +1 234 567 890</p>
+          <h2>Where we are</h2>
+          <h5>Man Boutique</h5>
+          <p><strong>Email:</strong> manboutique@email.com</p>
+          <p><strong>Phone:</strong> +1 234 567 890</p>
 
           <div class="map mt-4">
 
@@ -44,23 +58,35 @@
       </div>
     </div>
 
+    <hr>
+    <h2 class="text-center m-5">Still not sure? Contact our team and get close and personal</h2>
+
     <div class="assistant-cards row mt-4 justify-content-around">
+
       <div class="assistant-card col-12 col-md-5 mb-4">
         <img src="../imgs/Assistent-1.png" alt="Assistant 1" class="assistant-image">
         <h4>Americo Amorim</h4>
-        <p>Americo se destaca em comunicação e atendimento ao cliente. Ele é proativo e sempre procura oferecer soluções
-          rápidas e eficazes.</p>
+        <p>Americo excels in communication and customer service. He is proactive and always seeks to provide quick and
+          effective solutions.</p>
+
         <p>Email: americoamorim@email.com</p>
         <p>Phone: +1 234 567 891</p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary mt-2" @click="openEmail('americoamorim@email.com')">Email Americo</button>
+        </div>
       </div>
 
       <div class="assistant-card col-12 col-md-5 mb-4">
         <img src="../imgs/Assistent-2.png" alt="Assistant 2" class="assistant-image">
         <h4>Francisca Azevedo</h4>
-        <p>Francisca é conhecida por sua eficiência e cordialidade. Ela adora resolver problemas e garantir que todas as
-          interações sejam positivas.</p>
+        <p>Francisca is known for her efficiency and cordiality. She loves solving problems and ensuring that all
+          interactions are positive.</p>
+
         <p>Email: franciscaazevedo@email.com</p>
         <p>Phone: +1 234 567 891</p>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary mt-2" @click="openEmail('franciscaazevedo@email.com')">Email Francisca</button>
+        </div>
       </div>
     </div>
   </div>
@@ -130,4 +156,5 @@
     width: 100px;
     height: 100px;
   }
-}</style>
+}
+</style>
