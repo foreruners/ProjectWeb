@@ -68,15 +68,13 @@
                 <p>Price: €{{ product.price }}</p>
                 <div class="d-flex">
                   <a
-                    class="btn btn-outline-dark justify-content-center "
+                    class="btn btn-outline-dark justify-content-center w-100"
                     href="#"
                     @click="addToCartHandler(product.id)"
-                    >Add to cart</a>
-
-                    <a href="/cart"  class="btn btn-outline-dark justify-content-center ">Go to cart</a>
-                  <!-- <RouterLink class="nav-link active" to="/cart">
-                    <button class="btn btn-outline-dark justify-content-center w-100"> Go to cart</button>
-                  </RouterLink> -->
+                    >Add to cart</a
+                  >
+                  <a href="/cart"  class="btn btn-outline-dark justify-content-center "> <i class="bi bi-cart4"></i></a>
+                  
                 </div>
               </div>
             </div>
