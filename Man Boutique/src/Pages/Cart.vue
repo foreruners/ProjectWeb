@@ -1,6 +1,6 @@
 <template>
     <div class="cart container text-center mt-5 mb-5 p-5">
-         <div class="row">
+        <div class="row">
             <div class="col-12 col-md-9">
                 <div v-if="cartItems.length === 0">
                     <div class="card">
@@ -16,7 +16,7 @@
                     <div class="cart-items">
                         <div class="card">
                             <div class="card-header">
-                                 <h3 class="text-start">Shopping Cart</h3>
+                                <h3 class="text-start">Shopping Cart</h3>
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush" style="max-height: 60vh; overflow: auto;">
