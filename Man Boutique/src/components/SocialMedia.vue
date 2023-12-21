@@ -19,6 +19,13 @@
   </script>
   
   <style scoped>
+  i{
+    color: #d1c9c9;
+  }
+
+  i:hover{
+    color: #76787a;
+  }
   .social-links {
     font-size: 24px;
     color: #007bff;
