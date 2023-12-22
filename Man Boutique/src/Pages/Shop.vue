@@ -1,7 +1,16 @@
 <template>
-  <div class="container px-2 px-md-4 mt-5">
+  <div class="container px-1 px-md-4 mt-5">
+
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
+          
+          <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
+        </div>
+      </div>
+
     <div class="row gx-2 gx-md-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
-      <div v-for="productItem in currentProducts" :key="productItem.id" class="col mb-4 ">
+      <div v-for="productItem in filteredProducts" :key="productItem.id" class="col mb-4 card-group" >
         <ProductCard :product="productItem" />
       </div>
     </div>
@@ -39,16 +48,23 @@ import { ref, computed } from 'vue';
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
-const itemsPerPage = 12; 
+const itemsPerPage =8;
 const currentPage = ref(1);
+const searchQuery = ref('');
 
+const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
 
-const totalPages = computed(() => Math.ceil(productStore.products.length / itemsPerPage));
-
-const currentProducts = computed(() => {
+const filteredProducts = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  return productStore.products.slice(startIndex, endIndex);
+  const products = searchQuery.value
+    ? productStore.products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.value.toLowerCase())
+      )
+    : productStore.products;
+
+  return products.slice(startIndex, endIndex);
 });
 
 const goToPage = (page) => {
@@ -71,7 +87,12 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 
+
+
 </script>
+
+
+
 
 <style scoped>
 .pagination-gray .page-link,
@@ -95,4 +116,65 @@ onMounted(() => {
   color: #6c757d;
   border-color: #7b7d7f;
 }
+
+.search{
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  border-color: #dee2e6;
+
+}
+
+.search:hover{
+  background-color: #f7f8f9;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  border-color: #dee2e6;
+
+}
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 50px;
+    background-color: #171133;
+    border-radius: 25px;
+    padding: 5px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 350px;
+    caret-color:rgb(255, 255, 255);
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #000000;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+
 </style>

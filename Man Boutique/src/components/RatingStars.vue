@@ -6,7 +6,7 @@
       class="star"
       :class="{ filled: index <= rating }"
     >
-      <i class="bi bi-star-fill"></i>
+      <i class="bi  bi-star-fill"></i>
     </span>
   </div>
 </template>
