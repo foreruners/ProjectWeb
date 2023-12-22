@@ -17,7 +17,8 @@
                                         <h3>CART IS EMPTY</h3>
                                     </div>
                                     <div v-else class="show">
-                                        <div v-for="item in cartItems" :key="item.id" class="row mb-4 d-flex justify-content-between align-items-center ">
+                                        <div v-for="item in cartItems" :key="item.id"
+                                            class="row mb-4 d-flex justify-content-between align-items-center ">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
                                                 <img :src="item.image" class="img-fluid rounded-3" alt="Product Image">
                                             </div>
@@ -64,8 +65,8 @@
 
                                     <div class="mb-5">
                                         <div class="form-outline">
-                                            <input type="text" id="form3Examplea2" placeholder="Enter your code" class="form-control form-control-lg"
-                                                v-model="couponCode" />
+                                            <input type="text" id="form3Examplea2" placeholder="Enter your code"
+                                                class="form-control form-control-lg" v-model="couponCode" />
                                             <label class="form-label text-muted" for="form3Examplea2"></label>
                                         </div>
                                         <button @click="applyCoupon" class="btn btn-primary">Apply</button>
@@ -74,18 +75,18 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-5">
-                                        <h5>TOTAL PRICE</h5>
-                                        <h5>{{ totalPrice }} €</h5>
+                                        <h6>TOTAL PRICE</h6>
+                                        <h6 class="text-muted">{{ totalPrice }} €</h6>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h6>DISCOUNT</h6>
+                                        <h6 class="text-muted"> {{ discount1 }} %</h6>
                                     </div>
 
                                     <div class="d-flex justify-content-between mb-5">
-                                        <h5>DISCOUNT</h5>
-                                        <h5> {{ discount1 }} %</h5>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h5>FINAL PRICE</h5>
-                                        <h5>{{ total }} €</h5>
+                                        <h6>FINAL PRICE</h6>
+                                        <h6 class="text-muted">{{ total }} €</h6>
                                     </div>
 
                                     <button type="button" class="btn btn-primary btn-block btn-lg"
@@ -102,18 +103,19 @@
 </template>
 
 <script setup>
-import { defineProps, computed, ref } from 'vue';
+import { defineProps, computed, ref, onMounted } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
-import { onMounted } from 'vue';
+
+
 
 onMounted(() => {
-  if (!localStorage.getItem('reloaded')) {
-    localStorage.setItem('reloaded', true);
-    location.reload();
-  } else {
-    localStorage.removeItem('reloaded');
-  }
+    if (!localStorage.getItem('reloaded')) {
+        localStorage.setItem('reloaded', true);
+        location.reload();
+    } else {
+        localStorage.removeItem('reloaded');
+    }
 });
 
 
@@ -127,16 +129,18 @@ const couponCode = ref('');
 const discount1 = ref(0);
 
 
-
-
-
-
 const totalPrice = computed(() => {
     return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
 });
 
 
 const applyCoupon = async () => {
+
+    if (couponCode.value === '') {
+        alert('Please enter a coupon code');
+        return;
+    }
+
     discount1.value = await Api.checkCoupons(couponCode.value);
     console.log(couponCode.value);
 };
@@ -146,7 +150,7 @@ const total = computed(() => {
 
 
 const checkout = async () => {
-    //console.log(couponCode.value);
+
     if (cartItems.length === 0) {
         alert('Cart is empty');
         return;

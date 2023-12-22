@@ -1,13 +1,13 @@
 <template>
   <div class="container px-1 px-md-4 mt-5">
 
-    <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
-          
-          <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
-        </div>
-      </div>
+   <div class="d-flex justify-content-center h-100">
+       <div class="searchbar">
+         <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
+         
+         <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
+       </div>
+     </div>
 
     <div class="row gx-2 gx-md-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
       <div v-for="productItem in filteredProducts" :key="productItem.id" class="col mb-4 card-group" >
