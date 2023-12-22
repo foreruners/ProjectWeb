@@ -97,12 +97,7 @@ export default {
   background-image: url('../imgs/TopContact.png');
   background-size: cover;
   background-position: center;
-  color: white;
-  text-align: center;
-  padding: 20px;
   height: 50vh;
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -115,10 +110,6 @@ export default {
   flex-direction: column;
 }
 
-.contact-form label {
-  margin-bottom: 8px;
-}
-
 .map {
   height: 300px;
   margin-top: 20px;
@@ -129,9 +120,10 @@ export default {
 }
 
 .assistant-card {
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #09057309;
 }
 
 .assistant-card .assistant-image {
@@ -149,12 +141,5 @@ export default {
 
 .assistant-card p {
   text-align: center;
-}
-
-@media (max-width: 768px) {
-  .assistant-card .assistant-image {
-    width: 100px;
-    height: 100px;
-  }
 }
 </style>

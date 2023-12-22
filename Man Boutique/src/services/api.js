@@ -40,9 +40,10 @@ export default class Api {
 
     static async doCheckout(data)
     {
-       // if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
-       //     throw new Error('Invalid data format for checkout.');
-       //   }
+        if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
+            alert('Invalid data');
+            return;
+          }
 
         try {
             
@@ -53,6 +54,7 @@ export default class Api {
             alert(response.data.message);
             cartStore.clearCart();
             localStorage.clear();
+            return response.data;
         } catch (error) {
             console.error(error);
             alert('Checkout failed: ' + error.message);
