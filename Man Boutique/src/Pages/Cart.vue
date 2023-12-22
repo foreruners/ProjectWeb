@@ -146,7 +146,11 @@ const total = computed(() => {
 
 
 const checkout = async () => {
-    console.log(couponCode.value);
+    //console.log(couponCode.value);
+    if (cartItems.length === 0) {
+        alert('Cart is empty');
+        return;
+    }
     const data = {
         products: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
         coupon: couponCode.value,
