@@ -115,7 +115,7 @@ const addToCartHandler = (productId) => {
 }
 
 .card-group {
-  height: calc(100vh / 1.4);
+  height: calc(100vh / 1.5);
 }
 .card-img-top:hover {
   transform: scale(1.1);
@@ -139,7 +139,7 @@ const addToCartHandler = (productId) => {
 
 .card-body {
   background-color: transparent;
-  height: 10rem;
+  height: 8rem;
 }
 
 .btn {

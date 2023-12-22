@@ -9,15 +9,20 @@ export default {
 </script>
 
 <template>
-  <footer class="myConteiner d-flex justify-content-between text-light">
-    
-    <p class="mb-0 d-flex align-items-center">© 2023 All rights reserved.</p>
-    
-    <div>
-      <SocialMedia class="bi-xs"></SocialMedia>
-    </div>
-
-  </footer>
+  <footer class="footer text-white p-1 mt-auto">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <div>
+                      <p class="mb-0 mt-2 d-flex align-items-center">© 2023 All rights reserved.</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <SocialMedia class="bi-xs"></SocialMedia>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>
 
 
@@ -34,5 +39,9 @@ p {
   padding-bottom: 2px;
 
   background-color: rgba(9, 3, 39, 0.8);
+}
+
+.footer {
+  background-color: rgba(9, 3, 39, 0.94);
 }
 </style>
