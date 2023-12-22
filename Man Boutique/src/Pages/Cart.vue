@@ -106,7 +106,7 @@
 import { defineProps, computed, ref, onMounted } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
-
+ 
 
 
 onMounted(() => {
