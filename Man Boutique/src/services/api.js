@@ -54,6 +54,7 @@ export default class Api {
             alert(response.data.message);
             cartStore.clearCart();
             localStorage.clear();
+            return response.data;
         } catch (error) {
             console.error(error);
             alert('Checkout failed: ' + error.message);
