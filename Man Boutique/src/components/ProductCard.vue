@@ -103,7 +103,7 @@ const addToCartHandler = (productId) => {
 };
 </script>
 
-<style >
+<style scoped >
 .card-img-top {
   object-fit: cover;
   padding: 2rem;
@@ -139,26 +139,9 @@ const addToCartHandler = (productId) => {
 
 .card-body {
   background-color: transparent;
-  height: 8rem;
-}
-
-.btn {
- background-color: #171133;
-  border-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  transition: all 0.5s ease-in-out;
 }
 
 
-.btn:hover {
-  background-color: #171133;
-  border-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  transform: scale(1.05);
-  transition: all 0.5s ease-in-out;
-}
 
 
 </style>
