@@ -27,13 +27,13 @@
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                 <button class="btn btn-inc-decr btn-link px-2" @click="decrement(item.id)">
-                                                    <i class="bi bi-dash-square"></i>
+                                                    <i class="bi bi-dash"></i>
                                                 </button>
                                                 <div class="pt-2 text-muted px-2" style="font-size: 1rem;">
                                                     {{ item.quantity }}
                                                 </div>
                                                 <button class="btn btn-inc-decr btn-link px-2" @click="increment(item.id)">
-                                                    <i class="bi bi-file-plus"></i>
+                                                    <i class="bi bi-plus"></i>
                                                 </button>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
