@@ -1,16 +1,14 @@
 <template>
   <div class="container px-1 px-md-4 mt-5">
-
-   <div class="d-flex justify-content-center h-100">
-       <div class="searchbar">
-         <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
-         
-         <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
-       </div>
-     </div>
+    <div class="d-flex justify-content-center h-100">
+      <div class="searchbar">
+        <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
+        <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
+      </div>
+    </div>
 
     <div class="row gx-2 gx-md-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
-      <div v-for="productItem in filteredProducts" :key="productItem.id" class="col mb-4 card-group" >
+      <div v-for="productItem in currentProducts" :key="productItem.id" class="col mb-4 card-group">
         <ProductCard :product="productItem" />
       </div>
     </div>
@@ -39,32 +37,31 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref, computed, watch } from 'vue';
 import { useProductStore } from '../store/ProductStore';
-import { useCartStore } from '../store/CartStore';
 import ProductCard from '../components/ProductCard.vue';
-import { ref, computed } from 'vue';
 
 const productStore = useProductStore();
-const cartStore = useCartStore();
 
-const itemsPerPage =8;
+const itemsPerPage = 8;
 const currentPage = ref(1);
 const searchQuery = ref('');
 
-const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
-
 const filteredProducts = computed(() => {
-  const startIndex = (currentPage.value - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const products = searchQuery.value
+  return searchQuery.value
     ? productStore.products.filter(product =>
         product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         product.description.toLowerCase().includes(searchQuery.value.toLowerCase())
       )
     : productStore.products;
+});
 
-  return products.slice(startIndex, endIndex);
+const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
+
+const currentProducts = computed(() => {
+  const startIndex = (currentPage.value - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return filteredProducts.value.slice(startIndex, endIndex);
 });
 
 const goToPage = (page) => {
@@ -83,15 +80,14 @@ const goToNextPage = () => {
   }
 };
 
+watch(searchQuery, () => {
+  currentPage.value = 1;
+});
+
 onMounted(() => {
   productStore.fetchProducts();
 });
-
-
-
 </script>
-
-
 
 
 <style scoped>
