@@ -1,78 +1,100 @@
 <template>
-    <div class="cart container text-center mt-5 mb-5 p-5">
-        <div class="row">
-            <div class="col-12 col-md-9">
-                <div v-if="cartItems.length === 0">
-                    <div class="card">
-                      <div class="card-header">
-                        <h3 class="text-start">Shopping Cart</h3>
-                      </div>
-                      <div class="card-body">
-                        <p>Cart is empty.</p>
-                      </div>
-                    </div>
-                </div>
-                <div v-else class="show">
-                    <div class="cart-items">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="text-start">Shopping Cart</h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush" style="max-height: 60vh; overflow: auto;">
-                                    <li v-for="item in cartItems" :key="item.id">
-                                        <div class="item-details pb-1">
-                                            <div class="row" >
-                                                <div class="col-12 col-md-2 text-start">
-                                                    <img :src="item.image" style="max-width: 5vw;" class="img-fluid" alt="Product Image" />
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                        <h6 class="mb-0 text-muted">{{ cartItems.length }} items</h6>
+                                    </div>
+                                    <hr class="my-4">
+
+                                    <div v-if="cartItems.length === 0">
+                                        <h3>CART IS EMPTY</h3>
+                                    </div>
+                                    <div v-else class="show">
+                                        <div v-for="item in cartItems" :key="item.id"
+                                            class="row mb-4 d-flex justify-content-between align-items-center ">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img :src="item.image" class="img-fluid rounded-3" alt="Product Image">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-muted mb-0">{{ item.name }}</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <button class="btn btn-link px-2" @click="decrement(item.id)">
+                                                    <i class="bi bi-dash-square"></i>
+                                                </button>
+
+                                                <div class="pt-2 text-muted">
+                                                    {{ item.quantity }}
                                                 </div>
-                                                <div class="col-12 col-md-3 " >
-                                                    {{ item.name }}
-                                                </div>
-                                                <div class="col-12 col-md-4  text-end">
-                                                    <div class="row" >
-                                                        <div class="col-6 col-md-3">
-                                                            <button class="btn btn-light btn-sm"
-                                                                @click="decrement(item.id)">-</button>
-                                                        </div>
-                                                        <div class="col-6 col-md-3">
-                                                            <div class="pt-2">
-                                                                {{ item.quantity }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6 col-md-3 ">
-                                                            <button class="btn btn-light btn-sm"
-                                                                @click="increment(item.id)">+</button>
-                                                        </div>
-                                                        <div class="col-6 col-md-3">
-                                                            <button class="btn btn-light btn-sm"
-                                                                @click="removeItem(item.id)">Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+                                                <button class="btn btn-link px-2" @click="increment(item.id)">
+                                                    <i class="bi bi-file-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0 text-muted">{{ item.price }} €/unit</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                                <button class="btn btn-link px-2" @click="removeItem(item.id)">
+                                                    <i class="bi bi-trash3"></i></button>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="pt-5">
+                                        <router-link to="/shop" class="btn btn-primary hero-button">
+                                            <h6 class="mb-0"> Back to shop</h6>
+                                        </router-link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1">SUMMARY</h3>
+                                    <hr class="my-4">
+                                    <h5 class="mb-3">COUPON</h5>
+
+                                    <div class="mb-5">
+                                        <div class="form-outline">
+                                            <input type="text" id="form3Examplea2" placeholder="Enter your code"
+                                                class="form-control form-control-lg" v-model="couponCode" />
+                                            <label class="form-label text-muted" for="form3Examplea2"></label>
+                                        </div>
+                                        <button @click="applyCoupon" class="btn btn-primary">Apply</button>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h6>TOTAL PRICE</h6>
+                                        <h6 class="text-muted">{{ totalPrice }} €</h6>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h6>DISCOUNT</h6>
+                                        <h6 class="text-muted"> {{ discount1 }} %</h6>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h6>FINAL PRICE</h6>
+                                        <h6 class="text-muted">{{ total }} €</h6>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary btn-block btn-lg"
+                                        data-mdb-ripple-color="dark" @click="checkout">Checkout</button>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                    <div class="row pb-3 text-start">
-                        <div class="cart-cupons col-md-12">
-                            <h3>Cupons</h3>
-                            <input type="text" v-model="couponCode" placeholder="Enter coupon code" />
-                            <button @click="applyCoupon" class="btn btn-primary">Apply</button>
-                        </div>
-                    </div>
-                <div class="row pt-3 text-start">
-                    <div class="cart-total col-md-12">
-                        <p>Total Price: {{ totalPrice}}€ </p>
-                        <p>Discount: {{discount1 }}% </p>
-                        <p>Total: {{ total}}€ </p>
-                        <button @click="checkout" class="btn btn-primary btn-block">Checkout</button>
                     </div>
                 </div>
             </div>
@@ -81,9 +103,20 @@
 </template>
 
 <script setup>
-import { defineProps , computed, ref} from 'vue';
+import { defineProps, computed, ref, onMounted } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
+
+
+
+onMounted(() => {
+    if (!localStorage.getItem('reloaded')) {
+        localStorage.setItem('reloaded', true);
+        location.reload();
+    } else {
+        localStorage.removeItem('reloaded');
+    }
+});
 
 
 const props = defineProps(['product']);
@@ -96,43 +129,44 @@ const couponCode = ref('');
 const discount1 = ref(0);
 
 
-
-
-
-
 const totalPrice = computed(() => {
-  return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
+    return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
 });
 
 
 const applyCoupon = async () => {
-  discount1.value = await Api.checkCoupons(couponCode.value);
-  console.log(couponCode.value);
+
+    if (couponCode.value === '') {
+        alert('Please enter a coupon code');
+        return;
+    }
+
+    discount1.value = await Api.checkCoupons(couponCode.value);
+    console.log(couponCode.value);
 };
 const total = computed(() => {
-  return (totalPrice.value - (totalPrice.value * discount1.value/100)).toFixed(2);
+    return (totalPrice.value - (totalPrice.value * discount1.value / 100)).toFixed(2);
 });
 
 
 const checkout = async () => {
-    console.log(couponCode.value);
-  const data = {
-    products: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
-    coupon: couponCode.value,
-  };
 
-  await Api.doCheckout(data);
+    if (cartItems.length === 0) {
+        alert('Cart is empty');
+        return;
+    }
+    const data = {
+        products: cartItems.map(item => ({ id: item.id, quantity: item.quantity })),
+        coupon: couponCode.value,
+    };
+
+    await Api.doCheckout(data);
 };
 
 </script>
 
 
 <style scoped>
-.row {
-    background-color: rgb(246, 245, 245);
-}
-#appSummary{
-    justify-content:center;
-}
+@import '../styleCart.css';
 </style>
 
