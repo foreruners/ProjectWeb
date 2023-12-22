@@ -1,37 +1,36 @@
 <template>
-  <div class="card-group">
-    <div class="card h-100 d-flex flex-column align-items-end mt-4">
-      <div>
-        <div class="image-height">
-          <img
-            class="card-img-top"
-            :src="product.image"
-            alt="Product Image"
-            data-toggle="modal"
-            :data-target="'#myModal' + product.id"
-          />
-        </div>
-        <div class="card-body p-2">
-          <div class="d-flex justify-content-center small mb-1">
-            <RatingStars :objectId="product.id" />
-          </div>
-          <div class="text-center">
-            <h5 class="fw-bolder">{{ product.name }}</h5>
-            Price: {{ product.price }}€ - Quantity: {{ product.quantity }}
-          </div>
-        </div>
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-          <div class="text-center">
-            <a
-              class="btn btn-outline-dark"
-              href="#"
-              @click="addToCartHandler(product.id)"
-              >Add to cart</a
-            >
-          </div>
-        </div>
+<div class="card h-100 d-flex flex-column align-items-end mt-4">
+  <div>
+    <div class="image-height">
+      <img
+        class="card-img-top"
+        :src="product.image"
+        alt="Product Image"
+        data-toggle="modal"
+        :data-target="'#myModal' + product.id"
+      />
+    </div>
+    <div class="card-body p-2 mt-auto d-flex flex-column justify-content-between">
+      <div class="d-flex justify-content-center small mb-1">
+        <RatingStars :objectId="product.id" />
+      </div>
+      <div class="text-center">
+        <h5 class="fw-bolder">{{ product.name }}</h5>
+        Price: {{ product.price }}€ 
       </div>
     </div>
+    <div class="card-footer p-4  bg-transparent">
+      <div class="text-center">
+        <a
+          class="btn btn-outline-dark  w-100 "
+          href="#"
+          @click="addToCartHandler(product.id)"
+          >Add to cart</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Bootstrap Modal -->
     <div
@@ -67,18 +66,17 @@
                 <p>{{ product.description }}</p>
                 <RatingStars :objectId="product.id" class="pb-2" />
                 <p>Price: €{{ product.price }}</p>
-                <p>Quantity: {{ product.quantity }}</p>
                 <div class="d-flex">
                   <a
-                    class="btn btn-outline-dark"
+                    class="btn btn-outline-dark justify-content-center "
                     href="#"
                     @click="addToCartHandler(product.id)"
-                    >Add to cart</a
-                  >
+                    >Add to cart</a>
 
-                  <RouterLink class="nav-link active" to="/cart">
-                    <i class="bi bi-cart4"></i>
-                  </RouterLink>
+                    <a href="/cart"  class="btn btn-outline-dark justify-content-center ">Go to cart</a>
+                  <!-- <RouterLink class="nav-link active" to="/cart">
+                    <button class="btn btn-outline-dark justify-content-center w-100"> Go to cart</button>
+                  </RouterLink> -->
                 </div>
               </div>
             </div>
@@ -86,7 +84,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -117,7 +114,7 @@ const addToCartHandler = (productId) => {
 }
 
 .card-group {
-  height: calc(100vh / 1.5);
+  height: calc(100vh / 1.4);
 }
 .card-img-top:hover {
   transform: scale(1.1);
@@ -125,10 +122,24 @@ const addToCartHandler = (productId) => {
 }
 
 .card {
-  border: none;
+  border-radius: 1rem  ;
+  border:2px solid #8e8e8e83;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.15);
-}
+  transition: box-shadow 0.5s ease-in-out;}
+
 .card:hover {
-  box-shadow: 0 18px 18px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 30px 30px 0 rgba(255, 255, 255, 0.2);
 }
+
+.card-footer {
+  background-color: transparent;
+  border-top: none;
+}
+
+.card-body {
+  background-color: transparent;
+  height: 10rem;
+}
+
+
 </style>
