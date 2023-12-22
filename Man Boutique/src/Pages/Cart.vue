@@ -105,6 +105,16 @@
 import { defineProps, computed, ref } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  if (!localStorage.getItem('reloaded')) {
+    localStorage.setItem('reloaded', true);
+    location.reload();
+  } else {
+    localStorage.removeItem('reloaded');
+  }
+});
 
 
 const props = defineProps(['product']);
