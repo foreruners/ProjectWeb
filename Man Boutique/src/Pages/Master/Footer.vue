@@ -12,8 +12,6 @@ export default {
   <footer class="myConteiner d-flex justify-content-between text-light">
     
     <p class="mb-0 d-flex align-items-center">© 2023 All rights reserved.</p>
-
-    <p class="mb-0 d-flex align-items-center">Man Boutique</p>
     
     <div>
       <SocialMedia class="bi-xs"></SocialMedia>
@@ -21,6 +19,8 @@ export default {
 
   </footer>
 </template>
+
+
 
 <style scoped>
 p {

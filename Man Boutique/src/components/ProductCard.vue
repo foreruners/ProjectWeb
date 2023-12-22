@@ -71,7 +71,7 @@
                 <p>Price: €{{ product.price }}</p>
                 <div class="d-flex">
                   <a
-                    class="btn btn-outline-dark justify-content-center w-100"
+                    class="btn btn-outline-dark justify-content-center w-100 mx-2"
                     href="#"
                     @click="addToCartHandler(product.id)"
                     >Add to cart</a
