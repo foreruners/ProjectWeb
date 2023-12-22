@@ -24,7 +24,7 @@
         <a
           class="btn btn-outline-dark  w-100 "
           href="#"
-          @click="addToCartHandler(product.id)"
+          @click.prevent="addToCartHandler(product.id)"
           >Add to cart</a
         >
       </div>
