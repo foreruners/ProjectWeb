@@ -17,6 +17,7 @@
                                         <h3>CART IS EMPTY</h3>
                                     </div>
                                     <div v-else class="show">
+                                        <!-- Loop for display cart items-->
                                         <div v-for="item in cartItems" :key="item.id"
                                             class="row mb-4 d-flex justify-content-between align-items-center ">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
@@ -51,9 +52,7 @@
                                     <hr class="my-4">
 
                                     <div class="pt-5">
-                                        <router-link to="/shop" class="btn btn-primary hero-button">
-                                            <h6 class="mb-0"> Back to shop</h6>
-                                        </router-link>
+                                            <a href="/shop"><h6 class="mb-0 btn btn-primary hero-button"> Back to shop</h6></a> 
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +77,7 @@
                                         <h6>TOTAL PRICE</h6>
                                         <h6 class="text-muted">{{ totalPrice }} €</h6>
                                     </div>
-                                    
+
                                     <div class="d-flex justify-content-between mb-5">
                                         <h6>DISCOUNT</h6>
                                         <h6 class="text-muted"> {{ discount1 }} %</h6>
@@ -89,12 +88,57 @@
                                         <h6 class="text-muted">{{ total }} €</h6>
                                     </div>
 
-                                    <button type="button" class="btn btn-primary btn-block btn-lg"
-                                        data-mdb-ripple-color="dark" @click="checkout">Checkout</button>
+                                    <button type="button" class="btn  btn-block btn-lg" data-toggle="modal"
+                                        data-target="#exampleModal" data-mdb-ripple-color="dark">Checkout</button>
 
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+  <!-- setup  Cart Summary Modal-->
+    <div v-if="cartItems.length !== 0" >
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-muted" id="exampleModalLabel"><i>Cart Summary</i></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-for="item in cartItems" :key="item.id"
+                            class="row mb-4 d-flex justify-content-between align-items-center ">
+
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <h6 class="text-muted mb-0"><i>{{ item.name }}</i></h6>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                <div class="pt-2 text-muted">
+                                    <i>{{ item.quantity }}</i>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                <h6 class="mb-0 text-muted"><i>{{ item.price * item.quantity }}€</i></h6>
+                            </div>
+
+                        </div>
+                        <p class="text-muted"><i>Price: {{ totalPrice }} €</i></p>
+                        <p class="text-muted"><i>Discount: {{ discount1 }} %</i></p>
+                        <p class="text-muted"><i>Final Price: {{ total }} €</i></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            @click="checkout">Continue</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -106,7 +150,7 @@
 import { defineProps, computed, ref, onMounted } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
- 
+
 
 
 onMounted(() => {
@@ -161,6 +205,9 @@ const checkout = async () => {
     };
 
     await Api.doCheckout(data);
+
+
+
 };
 
 </script>
@@ -168,21 +215,21 @@ const checkout = async () => {
 
 <style>
 .btn {
- background-color: #171133;
-  border-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  transition: all 0.5s ease-in-out;
+    background-color: #171133;
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
 }
 
 
 .btn:hover {
-  background-color: #171133;
-  border-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  transform: scale(1.05);
-  transition: all 0.5s ease-in-out;
+    background-color: #171133;
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transform: scale(1.05);
+    transition: all 0.5s ease-in-out;
 }
 </style>
 
