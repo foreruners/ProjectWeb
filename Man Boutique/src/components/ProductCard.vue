@@ -1,36 +1,39 @@
 <template>
 <div class="card h-100 d-flex flex-column align-items-end mt-4">
-  <div>
-    <div class="image-height">
-      <img
-        class="card-img-top"
-        :src="product.image"
-        alt="Product Image"
-        data-toggle="modal"
-        :data-target="'#myModal' + product.id"
-      />
-    </div>
-    <div class="card-body p-2 mt-auto d-flex flex-column justify-content-between">
-      <div class="d-flex justify-content-center small mb-1">
-        <RatingStars :objectId="product.id" />
+    <div>
+      <div class="image-height">
+        <img
+          class="card-img-top"
+          :src="product.image"
+          alt="Product Image"
+          data-toggle="modal"
+          :data-target="'#myModal' + product.id"
+        />
+        
       </div>
-      <div class="text-center">
-        <h5 class="fw-bolder">{{ product.name }}</h5>
-        Price: {{ product.price }}€ 
+      <div class="card-body p-2 mt-auto d-flex flex-column justify-content-between">
+        <div class="d-flex justify-content-center small mb-1">
+          <RatingStars :objectId="product.id" />
+        </div>
+        <div class="text-center">
+          <h5 class="fw-bolder">{{ product.name }}</h5>
+          Price: {{ product.price }}€
+        </div>
       </div>
-    </div>
-    <div class="card-footer p-4  bg-transparent">
-      <div class="text-center">
-        <a
-          class="btn btn-outline-dark  w-100 "
-          href="#"
-          @click.prevent="addToCartHandler(product.id)"
-          >Add to cart</a
-        >
+      <div class="card-footer p-4  bg-transparent">
+        <div class="text-center">
+          <button
+            v-if="product.quantity > 0"
+            class="btn btn-outline-dark w-100"
+            @click.prevent="addToCartHandler(product.id)"
+          >
+            Add to cart
+          </button>
+          <span v-else class="text-danger">Out of Stock</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
     <!-- Bootstrap Modal -->
     <div
@@ -100,7 +103,7 @@ const addToCartHandler = (productId) => {
 };
 </script>
 
-<style>
+<style >
 .card-img-top {
   object-fit: cover;
   padding: 2rem;
@@ -137,6 +140,24 @@ const addToCartHandler = (productId) => {
 .card-body {
   background-color: transparent;
   height: 10rem;
+}
+
+.btn {
+ background-color: #171133;
+  border-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.btn:hover {
+  background-color: #171133;
+  border-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out;
 }
 
 

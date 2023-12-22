@@ -1,5 +1,6 @@
 <template>
   <div class="container px-1 px-md-4 mt-5">
+    <!-- Barra de pesquisa -->
     <div class="d-flex justify-content-center h-100">
       <div class="searchbar">
         <input v-model="searchQuery" class="search_input" type="text" name="" placeholder="Search product">
@@ -7,28 +8,29 @@
       </div>
     </div>
 
+    <!-- Exibição dos cards -->
     <div class="row gx-2 gx-md-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
       <div v-for="productItem in currentProducts" :key="productItem.id" class="col mb-4 card-group">
         <ProductCard :product="productItem" />
       </div>
     </div>
 
-    <!-- Custom Pagination -->
-    <nav aria-label="Page navigation example" class="pagination">
+    <!-- Paginação -->
+    <nav aria-label="Navegação entre páginas" class="pagination">
       <ul class="pagination justify-content-center pagination-gray">
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous" @click="goToPreviousPage">
+          <a class="page-link" href="#" aria-label="Anterior" @click="goToPreviousPage">
             <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Anterior</span>
           </a>
         </li>
         <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
           <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next" @click="goToNextPage">
+          <a class="page-link" href="#" aria-label="Próxima" @click="goToNextPage">
             <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Próxima</span>
           </a>
         </li>
       </ul>
@@ -47,6 +49,7 @@ const itemsPerPage = 8;
 const currentPage = ref(1);
 const searchQuery = ref('');
 
+// Filtragem dos produtos com base na pesquisa
 const filteredProducts = computed(() => {
   return searchQuery.value
     ? productStore.products.filter(product =>
@@ -56,39 +59,45 @@ const filteredProducts = computed(() => {
     : productStore.products;
 });
 
+// Cálculo do número total de páginas
 const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
 
+// Obtém os produtos da página atual
 const currentProducts = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   return filteredProducts.value.slice(startIndex, endIndex);
 });
 
+// Função para ir para uma página específica
 const goToPage = (page) => {
   currentPage.value = page;
 };
 
+// Função para ir para a página anterior
 const goToPreviousPage = () => {
   if (currentPage.value > 1) {
     currentPage.value -= 1;
   }
 };
 
+// Função para ir para a próxima página
 const goToNextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value += 1;
   }
 };
 
+// Observador para voltar à página 1 quando a pesquisa é alterada
 watch(searchQuery, () => {
   currentPage.value = 1;
 });
 
+// Carregar os produtos da base de dados ao montar o componente
 onMounted(() => {
   productStore.fetchProducts();
 });
 </script>
-
 
 <style scoped>
 .pagination-gray .page-link,
