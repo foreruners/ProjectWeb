@@ -4,7 +4,7 @@ import GridGallery from '../components/GridGallery.vue';
 export default {
     components: {
         GridGallery
-    }
+    },
 }
 </script>
 
@@ -68,7 +68,6 @@ export default {
 }
 
 .services-title {
-    text-align: center;
     font-size: 2rem;
     margin-bottom: 30px;
 }</style>
