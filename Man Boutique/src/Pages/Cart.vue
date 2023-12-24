@@ -69,7 +69,6 @@
                                         <h6>TOTAL PRICE</h6>
                                         <h6 class="text-muted">{{ totalPrice }} €</h6>
                                     </div>
-
                                     <div class="d-flex justify-content-between mb-5">
                                         <h6>DISCOUNT</h6>
                                         <h6 class="text-muted"> {{ discount1 }} %</h6>
@@ -78,10 +77,8 @@
                                         <h6>FINAL PRICE</h6>
                                         <h6 class="text-muted">{{ total }} €</h6>
                                     </div>
-
                                     <button type="button" class="btn  btn-block btn-lg" data-toggle="modal"
                                         data-target="#exampleModal" data-mdb-ripple-color="dark">Checkout</button>
-
                                 </div>
                             </div>
                         </div>
@@ -93,7 +90,7 @@
 
 
 
-  <!-- setup  Cart Summary Modal-->
+<!-- setup  Cart Summary Modal-->
     <div v-if="cartItems.length !== 0" >
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -108,7 +105,6 @@
                     <div class="modal-body">
                         <div v-for="item in cartItems" :key="item.id"
                             class="row mb-4 d-flex justify-content-between align-items-center ">
-
                             <div class="col-md-3 col-lg-3 col-xl-3">
                                 <h6 class="text-muted mb-0"><i>{{ item.name }}</i></h6>
                             </div>
@@ -120,7 +116,6 @@
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                 <h6 class="mb-0 text-muted"><i>{{ item.price * item.quantity }}€</i></h6>
                             </div>
-
                         </div>
                         <p class="text-muted"><i>Price: {{ totalPrice }} €</i></p>
                         <p class="text-muted"><i>Discount: {{ discount1 }} %</i></p>
@@ -196,8 +191,43 @@ const checkout = async () => {
 
 </script>
 
-
 <style>
-@import '../style.css';
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: #535bf2;
+}
+
+
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+
+.btn {
+    background-color: #171133;
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.btn:hover {
+    background-color: #171133;
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    transform: scale(1.05);
+    transition: all 0.5s ease-in-out;
+}
+
+
 </style>
 
