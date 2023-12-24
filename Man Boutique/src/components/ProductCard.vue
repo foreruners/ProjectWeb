@@ -103,7 +103,7 @@ const addToCartHandler = (productId) => {
 };
 </script>
 
-<style scoped >
+<style  >
 .card-img-top {
   object-fit: cover;
   padding: 2rem;
@@ -117,6 +117,8 @@ const addToCartHandler = (productId) => {
 .card-group {
   height: calc(100vh / 1.5);
 }
+
+
 .card-img-top:hover {
   transform: scale(1.1);
   transition: transform 0.5s ease-in-out;
@@ -139,6 +141,7 @@ const addToCartHandler = (productId) => {
 
 .card-body {
   background-color: transparent;
+  height: 8rem;
 }
 
 

@@ -144,14 +144,7 @@ import Api from '../services/api.js';
 
 
 
-// onMounted(() => {
-//     if (!localStorage.getItem('reloaded')) {
-//         localStorage.setItem('reloaded', true);
-//         location.reload();
-//     } else {
-//         localStorage.removeItem('reloaded');
-//     }
-// });
+
 
 
 const props = defineProps(['product']);
@@ -205,22 +198,6 @@ const checkout = async () => {
 
 
 <style>
-.btn {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transition: all 0.5s ease-in-out;
-}
-
-
-.btn:hover {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transform: scale(1.05);
-    transition: all 0.5s ease-in-out;
-}
+@import '../style.css';
 </style>
 
