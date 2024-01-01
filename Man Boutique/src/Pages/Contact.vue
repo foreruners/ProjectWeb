@@ -64,7 +64,7 @@ export default {
     <div class="assistant-cards row mt-4 justify-content-around">
 
       <div class="assistant-card col-12 col-md-5 mb-4">
-        <img src="../imgs/Assistent-1.png" alt="Assistant 1" class="assistant-image">
+        <img src="../assets/img/Assistent-1.png" alt="Assistant 1" class="assistant-image">
         <h4>Americo Amorim</h4>
         <p>Americo excels in communication and customer service. He is proactive and always seeks to provide quick and
           effective solutions.</p>
@@ -77,7 +77,7 @@ export default {
       </div>
 
       <div class="assistant-card col-12 col-md-5 mb-4">
-        <img src="../imgs/Assistent-2.png" alt="Assistant 2" class="assistant-image">
+        <img src="../assets/img/Assistent-2.png" alt="Assistant 2" class="assistant-image">
         <h4>Francisca Azevedo</h4>
         <p>Francisca is known for her efficiency and cordiality. She loves solving problems and ensuring that all
           interactions are positive.</p>
@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .contact-header {
-  background-image: url('../imgs/TopContact.png');
+  background-image: url('../assets/img/TopContact.png');
   background-size: cover;
   background-position: center;
   height: 50vh;

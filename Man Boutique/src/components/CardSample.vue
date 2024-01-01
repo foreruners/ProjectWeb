@@ -64,8 +64,8 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(9, 3, 39, 0.6);
-  color: white;
+  background-color: rgba(9, 3, 39, 0.9);
+  color: rgb(244, 242, 242);
   padding: 5px;
   margin: 0;
 }
@@ -94,4 +94,3 @@ export default {
   background-color: rgba(0, 0, 255, 0.7);
 }
 </style>
-  

@@ -10,7 +10,7 @@ const cartStore = useCartStore();
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span><img src="../../imgs/myIcon.png" alt="Logo" class="nav-logo"></span>
+      <span><img src="../../assets/img/myIcon.png" alt="Logo" class="nav-logo"></span>
     </button>
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -40,7 +40,7 @@ const cartStore = useCartStore();
 
       <ul class="navbar-nav mx-auto">
         <li class="nav-item d-none d-lg-block">
-          <RouterLink to="/" class="navbar-brand"><img src="../../imgs/myIcon.png" alt="Logo" class="nav-logo">
+          <RouterLink to="/" class="navbar-brand"><img src="../../assets/img/myIcon.png" alt="Logo" class="nav-logo">
           </RouterLink>
         </li>
       </ul>
