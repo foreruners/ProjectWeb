@@ -16,34 +16,9 @@
                                         <h3>CART IS EMPTY</h3>
                                     </div>
                                     <div v-else class="show">
-                                        <!-- Loop for display cart items-->
-                                        <div v-for="item in cartItems" :key="item.id"
-                                            class="row mb-4 d-flex justify-content-between align-items-center ">
-                                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img :src="item.image" class="img-fluid rounded-3" alt="Product Image">
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                                <h6 class="text-muted mb-0">{{ item.name }}</h6>
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <button class="btn btn-inc-decr  px-2" @click="decrement(item.id)">
-                                                    <i class="bi bi-dash"></i>
-                                                </button>
-                                                <div class="pt-2 text-muted px-2" style="font-size: 1rem;">
-                                                    {{ item.quantity }}
-                                                </div>
-                                                <button class="btn btn-inc-decr  px-2" @click="increment(item.id)">
-                                                    <i class="bi bi-plus"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0 text-muted">{{ item.price }} €/unit</h6>
-                                            </div>
-                                            <div class="col-md-1 col-lg-1 col-xl-1">
-                                                <button class="btn btn-style  px-2" @click="removeItem(item.id)">
-                                                    <i class="bi bi-trash3"></i></button>
-                                            </div>
-                                        </div>
+                                        
+                                        <CartItem v-for="item in cartItems" :key="item.id" :item="item" :increment="increment" :decrement="decrement" :removeItem="removeItem" />
+
                                     </div>
                                     <hr class="my-4">
                                     <div class="pt-5">
@@ -51,41 +26,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 bg-grey">
+                            <div class="col-lg-4 bg-grey" id="summary">
                                 <div class="p-5">
-                                    <h3 class="fw-bold mb-5 mt-2 pt-1">SUMMARY</h3>
-                                    <hr class="my-4">
-                                    <h5 class="mb-3">COUPON</h5>
-                                    <div class="mb-5">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Examplea2" placeholder="Enter your code"
-                                                class="form-control form-control-lg" v-model="couponCode" />
-                                            <label class="form-label text-muted" for="form3Examplea2"></label>
-                                        </div>
-                                        <button @click="applyCoupon" class="btn btn-style">Apply</button>
+                                  <h3 class="fw-bold mb-5 mt-2 pt-1">SUMMARY</h3>
+                                  <hr class="my-4">
+                                  <h5 class="mb-3">COUPON</h5>
+                                  <div class="mb-5">
+                                    <div class="form-outline">
+                                      <input type="text" id="formC" placeholder="Enter your code"
+                                             class="form-control form-control-lg" v-model="couponCode" />
+                                      <label class="form-label text-muted" for="form3Examplea2"></label>
                                     </div>
-                                    <hr class="my-4">
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h6>TOTAL PRICE</h6>
-                                        <h6 class="text-muted">{{ totalPrice }} €</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h6>DISCOUNT</h6>
-                                        <h6 class="text-muted"> {{ discount1 }} %</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h6>FINAL PRICE</h6>
-                                        <h6 class="text-muted">{{ total }} €</h6>
-                                    </div>
-                                    <div v-if="cartItems.length !== 0">
-                                        <button type="button" class="btn  btn-block " data-toggle="modal"
-                                        data-target="#cartModal" data-mdb-ripple-color="dark">Checkout</button>
-                                    </div>
-                                    <div v-else>
-                                        <button type="button" class="btn  btn-block" @click="checkout">Checkout</button>
-                                    </div>
+                                    <button @click="applyCoupon" class="btn btn-style">Apply</button>
+                                  </div>
+                                    <CartSummary :totalPrice="totalPrice" :discount1="discount1" :total="total" :cartItemsLength="cartItems.length" :applyCoupon="applyCoupon" :checkout="checkout"  :cartItems="cartItems"/>
                                 </div>
-                            </div>
+                            </div>      
                         </div>
                     </div>
                 </div>
@@ -95,53 +51,15 @@
 
 
 
-<!-- setup  Cart Summary Modal-->
-    <div v-if="cartItems.length !== 0" >
-        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-muted" id="exampleModalLabel"><i>Cart Summary</i></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div v-for="item in cartItems" :key="item.id"
-                            class="row mb-4 d-flex justify-content-between align-items-center ">
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <h6 class="text-muted mb-0"><i>{{ item.name }}</i></h6>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <div class="pt-2 text-muted">
-                                    <i>{{ item.quantity }}</i>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h6 class="mb-0 text-muted"><i>{{ item.price * item.quantity }}€</i></h6>
-                            </div>
-                        </div>
-                        <p class="text-muted"><i>Price: {{ totalPrice }} €</i></p>
-                        <p class="text-muted"><i>Discount: {{ discount1 }} %</i></p>
-                        <p class="text-muted"><i>Final Price: {{ total }} €</i></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                            @click="checkout">Continue</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </template>
 
 <script setup>
 import { defineProps, computed, ref, onMounted } from 'vue';
 import { useCartStore } from '../store/CartStore';
 import Api from '../services/api.js';
-
+import CartItem from '../components/CartItemsComp.vue';
+import CartSummary from '../components/CartSummary.vue';
 
 
 
@@ -156,7 +74,7 @@ const removeItem = cartStore.removeFromCart;
 const couponCode = ref('');
 const discount1 = ref(0);
 
-
+//the reduce() method reduces the array to a single value 
 const totalPrice = computed(() => {
     return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
 });
@@ -172,6 +90,8 @@ const applyCoupon = async () => {
     discount1.value = await Api.checkCoupons(couponCode.value);
     console.log(couponCode.value);
 };
+
+
 const total = computed(() => {
     return (totalPrice.value - (totalPrice.value * discount1.value / 100)).toFixed(2);
 });

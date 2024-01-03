@@ -69,13 +69,15 @@
                 <p>{{ product.description }}</p>
                 <RatingStars :objectId="product.id" class="pb-2" />
                 <p>Price: €{{ product.price }}</p>
+                
                 <div class="d-flex">
-                  <a
+                  <a v-if="product.quantity > 0"
                     class="btn btn-outline-dark justify-content-center w-100 mx-2"
                     href="#"
                     @click="addToCartHandler(product.id)"
                     >Add to cart</a
                   >
+                  <span v-else class="text-danger px-2">Out of Stock</span>
                   <a href="/cart"  class="btn btn-outline-dark justify-content-center "> <i class="bi bi-cart4"></i></a>
                   
                 </div>
@@ -92,18 +94,17 @@ import { defineProps } from "vue";
 import { useCartStore } from "../store/CartStore";
 import RatingStars from "./RatingStars.vue";
 
+
 const props = defineProps(["product"]);
 const cartStore = useCartStore();
 
 const addToCartHandler = (productId) => {
   const productAdded = cartStore.addToCart(props.product);
-  if (productAdded) {
-    alert(`${props.product.name} added to cart`);
-  }
+  
 };
 </script>
 
-<style  scoped>
+<style scoped >
 .card-img-top {
   object-fit: cover;
   padding: 2rem;
@@ -117,8 +118,6 @@ const addToCartHandler = (productId) => {
 .card-group {
   height: calc(100vh / 1.5);
 }
-
-
 .card-img-top:hover {
   transform: scale(1.1);
   transition: transform 0.5s ease-in-out;
@@ -144,23 +143,7 @@ const addToCartHandler = (productId) => {
   height: 8rem;
 }
 
-.btn {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transition: all 0.5s ease-in-out;
-}
 
-
-.btn:hover {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transform: scale(1.05);
-    transition: all 0.5s ease-in-out;
-}
 
 
 </style>
