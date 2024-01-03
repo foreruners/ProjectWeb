@@ -143,6 +143,7 @@ const addToCartHandler = (productId) => {
   height: 8rem;
 }
 
+@import'../styleCart.css';
 
 
 
