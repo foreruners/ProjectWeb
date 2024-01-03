@@ -152,6 +152,9 @@ onUnmounted(() => {
   left: 50%;
   transform: translateX(-50%);
 }
+.active{
+  font-weight: 1000;
+}
 
 @media (max-width: 991px) {
   .navbar {
