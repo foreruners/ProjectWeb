@@ -69,13 +69,15 @@
                 <p>{{ product.description }}</p>
                 <RatingStars :objectId="product.id" class="pb-2" />
                 <p>Price: €{{ product.price }}</p>
+                
                 <div class="d-flex">
-                  <a
+                  <a v-if="product.quantity > 0"
                     class="btn btn-outline-dark justify-content-center w-100 mx-2"
                     href="#"
                     @click="addToCartHandler(product.id)"
                     >Add to cart</a
                   >
+                  <span v-else class="text-danger px-2">Out of Stock</span>
                   <a href="/cart"  class="btn btn-outline-dark justify-content-center "> <i class="bi bi-cart4"></i></a>
                   
                 </div>

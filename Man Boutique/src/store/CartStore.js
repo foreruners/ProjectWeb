@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { useProductStore } from './ProductStore';
 
-function findProductInStore(productStore, productId) {
-  return productStore.products.find(p => p.id === productId);
-}
+// function findProductInStore(productStore, productId) {
+//   return productStore.products.find(p => p.id === productId);
+// }
 
 let products;
 let cart;
@@ -54,8 +54,10 @@ export const useCartStore = defineStore({
         if (availableStock > 0) {
 
           this.cart.push({ ...productInStore, quantity: 1 });
-          //alert("Product added to cart.");s
-
+          //alert("Product added to cart.");
+          this.$notification.show = true;
+        this.$notification.message = 'Product added to cart!';
+        this.$notification.type = 'success';
         } else {
 
           alert("Not enough stock available.");
