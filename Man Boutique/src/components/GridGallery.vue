@@ -1,22 +1,22 @@
 <template>
     <div class="grid-container">
         <div class="my-item item1">
-            <img src="../imgs/Grid-Gallery/GridGallery-1.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-1.png" alt="">
         </div>
         <div class="my-item item2">
-            <img src="../imgs/Grid-Gallery/GridGallery-2.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-2.png" alt="">
         </div>
         <div class="my-item item3">
-            <img src="../imgs/Grid-Gallery/GridGallery-3.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-3.png" alt="">
         </div>
         <div class="my-item item4">
-            <img src="../imgs/Grid-Gallery/GridGallery-4.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-4.png" alt="">
         </div>
         <div class="my-item item5">
-            <img src="../imgs/Grid-Gallery/GridGallery-5.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-5.png" alt="">
         </div>
         <div class="my-item item6">
-            <img src="../imgs/Grid-Gallery/GridGallery-6.png" alt="">
+            <img src="../assets/img/Grid-Gallery/GridGallery-6.png" alt="">
         </div>
     </div>
 </template>

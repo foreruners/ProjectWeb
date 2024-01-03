@@ -42,10 +42,20 @@ export default {
 <style scoped>
 .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
-    url('../imgs/myHero.webp') center/cover no-repeat;
+    url('../assets/img/myHero.webp') center/cover no-repeat;
   color: #fff;
   padding: 100px 0;
   height: 100vh;
+  animation: zoomOut 1.4s ease-out;
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .hero-content {
