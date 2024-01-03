@@ -67,7 +67,7 @@
   </template>
   
   <script setup>
-  //props is used to pass data from parent to child
+  //pass data from parent to child
   const props = defineProps({
     totalPrice: Number,
     discount1: Number,
