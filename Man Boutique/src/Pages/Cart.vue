@@ -26,13 +26,13 @@
                                                 <h6 class="text-muted mb-0">{{ item.name }}</h6>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <button class="btn btn-inc-decr btn-link px-2" @click="decrement(item.id)">
+                                                <button class="btn btn-inc-decr  px-2" @click="decrement(item.id)">
                                                     <i class="bi bi-dash"></i>
                                                 </button>
                                                 <div class="pt-2 text-muted px-2" style="font-size: 1rem;">
                                                     {{ item.quantity }}
                                                 </div>
-                                                <button class="btn btn-inc-decr btn-link px-2" @click="increment(item.id)">
+                                                <button class="btn btn-inc-decr  px-2" @click="increment(item.id)">
                                                     <i class="bi bi-plus"></i>
                                                 </button>
                                             </div>
@@ -40,14 +40,14 @@
                                                 <h6 class="mb-0 text-muted">{{ item.price }} €/unit</h6>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1">
-                                                <button class="btn btn-style btn-link px-2" @click="removeItem(item.id)">
+                                                <button class="btn btn-style  px-2" @click="removeItem(item.id)">
                                                     <i class="bi bi-trash3"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                     <hr class="my-4">
                                     <div class="pt-5">
-                                            <a href="/shop"><h6 class="mb-0 btn btn-primary hero-button"> Back to shop</h6></a> 
+                                            <a href="/shop"><h6 class="mb-0 btn  hero-button"> Back to shop</h6></a> 
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                                 class="form-control form-control-lg" v-model="couponCode" />
                                             <label class="form-label text-muted" for="form3Examplea2"></label>
                                         </div>
-                                        <button @click="applyCoupon" class="btn btn-style btn-primary">Apply</button>
+                                        <button @click="applyCoupon" class="btn btn-style">Apply</button>
                                     </div>
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">
@@ -77,8 +77,13 @@
                                         <h6>FINAL PRICE</h6>
                                         <h6 class="text-muted">{{ total }} €</h6>
                                     </div>
-                                    <button type="button" class="btn  btn-block btn-lg" data-toggle="modal"
-                                        data-target="#exampleModal" data-mdb-ripple-color="dark">Checkout</button>
+                                    <div v-if="cartItems.length !== 0">
+                                        <button type="button" class="btn  btn-block " data-toggle="modal"
+                                        data-target="#cartModal" data-mdb-ripple-color="dark">Checkout</button>
+                                    </div>
+                                    <div v-else>
+                                        <button type="button" class="btn  btn-block" @click="checkout">Checkout</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +97,7 @@
 
 <!-- setup  Cart Summary Modal-->
     <div v-if="cartItems.length !== 0" >
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -192,42 +197,7 @@ const checkout = async () => {
 </script>
 
 <style>
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-}
-
-a:hover {
-    color: #535bf2;
-}
-
-
-
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-}
-
-
-.btn {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transition: all 0.5s ease-in-out;
-}
-
-
-.btn:hover {
-    background-color: #171133;
-    border-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    transform: scale(1.05);
-    transition: all 0.5s ease-in-out;
-}
-
+@import'../styleCart.css';
 
 </style>
 
