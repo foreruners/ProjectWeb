@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-5 h-100">
+    <div class="container py-5 h-100" style="margin-top: 80px;">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">

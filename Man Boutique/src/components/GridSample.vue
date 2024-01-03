@@ -26,7 +26,7 @@ export default {
   <div class="container">
     <div class="mySampleCard row row-cols-1 row-cols-md-3 g-4">
       <div class="col d-flex p-3" v-for="(productItem, index) in currentProducts" :key="productItem.id">
-        <div class="card-sample" :data-aos="aosEffects[index % aosEffects.length]">
+        <div class="card-sample" :data-aos="aosEffects[index % aosEffects.length]" data-aos-duration="1000">
           <div class="card-content">
             <CardSample :product="productItem" class="flex-fill"></CardSample>
           </div>

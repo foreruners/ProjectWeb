@@ -9,11 +9,11 @@ export default {
 </script>
 
 <template>
-    <div class="about-section py-5">
+    <div class="about-section py-5" style="margin-top: 80px;">
         <div class="container">
-            <h2 class="section-title text-center mb-4">About Us</h2>
+            <h1 class="section-title text-center mb-4" data-aos="flip-down" data-aos-duration="1000">About Us</h1>
             <div class="row mb-5 align-items-center">
-                <div class="about-text col-md-7">
+                <div class="about-text col-md-7" data-aos="fade-right" data-aos-duration="1000">
                     <p>
                         Founded in 2023, Man Boutique began with the mission of bringing elegance and sophistication to
                         men's wardrobes. Our founders, Ricardo Ferreira, Wilson Mirande, and Filipe Moreira, inspired by
@@ -34,13 +34,13 @@ export default {
                         - it's about confidence, character, and making a lasting impression.
                     </p>
                 </div>
-                <div class="about-image col-md-5">
+                <div class="about-image col-md-5" data-aos="fade-left" data-aos-duration="1000">
                     <img src="../assets/img/abouImg.png" class="img-fluid rounded">
                 </div>
             </div>
             <hr>
             <div class="services-section mt-5">
-                <h3 class="services-title text-center">Our Exclusive Services</h3>
+                <h1 class="services-title text-center" data-aos="flip-down" data-aos-duration="1000">Our Exclusive Services</h1>
                 <p class="text-center">
                     At Man Boutique, we offer more than just products - we deliver experiences. Our personalized fashion
                     consulting service helps you find the perfect style that fits your personal taste and needs. In
@@ -70,4 +70,12 @@ export default {
 .services-title {
     font-size: 2rem;
     margin-bottom: 30px;
-}</style>
+}
+
+h1{
+  background-color: rgba(174, 172, 182, 0.193);
+  color: rgba(9, 3, 39, 0.94);
+  text-shadow: #4f4c4c 1px 1px 1px;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+</style>

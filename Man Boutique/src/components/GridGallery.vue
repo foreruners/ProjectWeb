@@ -1,21 +1,21 @@
 <template>
     <div class="grid-container">
-        <div class="my-item item1">
+        <div class="my-item item1" data-aos="fade-down-right" data-aos-duration="1000">
             <img src="../assets/img/Grid-Gallery/GridGallery-1.png" alt="">
         </div>
-        <div class="my-item item2">
+        <div class="my-item item2" data-aos="fade-up-right" data-aos-duration="1000">
             <img src="../assets/img/Grid-Gallery/GridGallery-2.png" alt="">
         </div>
-        <div class="my-item item3">
+        <div class="my-item item3" data-aos="fade-down" data-aos-duration="1000">
             <img src="../assets/img/Grid-Gallery/GridGallery-3.png" alt="">
         </div>
-        <div class="my-item item4">
+        <div class="my-item item4" data-aos="fade-down-left" data-aos-duration="1000">
             <img src="../assets/img/Grid-Gallery/GridGallery-4.png" alt="">
         </div>
-        <div class="my-item item5">
+        <div class="my-item item5" data-aos="fade-up" >
             <img src="../assets/img/Grid-Gallery/GridGallery-5.png" alt="">
         </div>
-        <div class="my-item item6">
+        <div class="my-item item6" data-aos="fade-up-left" >
             <img src="../assets/img/Grid-Gallery/GridGallery-6.png" alt="">
         </div>
     </div>
