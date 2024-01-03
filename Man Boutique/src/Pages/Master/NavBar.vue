@@ -152,5 +152,15 @@ onUnmounted(() => {
   left: 50%;
   transform: translateX(-50%);
 }
+
+@media (max-width: 991px) {
+  .navbar {
+  background-color: rgb(9, 3, 39);
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: medium;
+}
+}
 </style>
 
