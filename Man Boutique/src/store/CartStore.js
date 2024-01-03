@@ -5,6 +5,7 @@ import { useProductStore } from './ProductStore';
 //   return productStore.products.find(p => p.id === productId);
 // }
 
+// Load products and cart from localStorage if available or use empty arrays
 let products;
 let cart;
 try {
@@ -16,6 +17,8 @@ try {
   cart = [];
 }
 
+
+// Pinia store that contains the cart and products
 export const useCartStore = defineStore({
   id: "cartStore",
   state: () => ({
@@ -55,9 +58,7 @@ export const useCartStore = defineStore({
 
           this.cart.push({ ...productInStore, quantity: 1 });
           //alert("Product added to cart.");
-          this.$notification.show = true;
-        this.$notification.message = 'Product added to cart!';
-        this.$notification.type = 'success';
+
         } else {
 
           alert("Not enough stock available.");

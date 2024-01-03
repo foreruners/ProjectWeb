@@ -1,5 +1,6 @@
 <template>
    
+   <!-- Cart Summary -->
         <hr class="my-4">
         <div class="d-flex justify-content-between mb-5">
           <h6>TOTAL PRICE</h6>
@@ -66,6 +67,7 @@
   </template>
   
   <script setup>
+  //pass data from parent to child
   const props = defineProps({
     totalPrice: Number,
     discount1: Number,

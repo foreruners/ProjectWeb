@@ -74,7 +74,7 @@ const removeItem = cartStore.removeFromCart;
 const couponCode = ref('');
 const discount1 = ref(0);
 
-
+//the reduce() method reduces the array to a single value 
 const totalPrice = computed(() => {
     return (cartItems.reduce((total, item) => total + item.price * item.quantity, 0)).toFixed(2);
 });
@@ -90,6 +90,8 @@ const applyCoupon = async () => {
     discount1.value = await Api.checkCoupons(couponCode.value);
     console.log(couponCode.value);
 };
+
+
 const total = computed(() => {
     return (totalPrice.value - (totalPrice.value * discount1.value / 100)).toFixed(2);
 });
