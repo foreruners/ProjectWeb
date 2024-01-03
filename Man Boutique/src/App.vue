@@ -5,7 +5,9 @@ import MainLayout from './Pages/Master/MainLayout.vue';
 <template>
 
   <div>
-  <MainLayout></MainLayout>
+
+    <MainLayout></MainLayout>
+
   </div>
 
 </template>
