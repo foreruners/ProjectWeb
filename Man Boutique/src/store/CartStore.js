@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia';
 import { useProductStore } from './ProductStore';
 
-// function findProductInStore(productStore, productId) {
-//   return productStore.products.find(p => p.id === productId);
-// }
 
 // Load products and cart from localStorage if available or use empty arrays
 let products;
@@ -57,12 +54,9 @@ export const useCartStore = defineStore({
         if (availableStock > 0) {
 
           this.cart.push({ ...productInStore, quantity: 1 });
-          //alert("Product added to cart.");
+          alert("Product added to cart.");
 
-        } else {
-
-          alert("Not enough stock available.");
-        }
+        } 
       } else {
 
         const productInStore = productStore.products.find(
@@ -73,11 +67,9 @@ export const useCartStore = defineStore({
 
         if (availableStock > 0) {
           existingProduct.quantity += 1;
-         // alert("Product added to cart.");
+          alert("Product added to cart.");
 
-        } else {
-          alert("Not enough stock available.");
-        }
+        } 
       }
       this.saveCartToLocalStorage();
 
