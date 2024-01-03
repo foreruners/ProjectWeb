@@ -12,7 +12,7 @@ export default class Api {
     }
 
     
-
+//checkCoupons  comunicates with the backend to check if the coupon is valid
     static async checkCoupons(couponCode) 
     {
 
@@ -38,6 +38,7 @@ export default class Api {
         
     }
 
+    //doCheckout  comunicates with the backend to do the checkout
     static async doCheckout(data)
     {
         if (!Array.isArray(data.products) || typeof data.coupon !== 'string') {
@@ -63,6 +64,7 @@ export default class Api {
     }
 
 
+    //getProducts  comunicates with the backend to get the products
     static async getProducts() 
     {
         try {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container px-1 px-md-4 mt-5">
+  <div class="container px-1 px-md-4" style="margin-top: 80px;">
     <!-- Barra de pesquisa -->
     <div class="d-flex justify-content-center h-100">
       <div class="searchbar">

@@ -32,7 +32,6 @@ export default {
 
 .content {
   flex: 1;
-  margin-top: 51px;
   background-color: #d7d7d7;
 }
 </style>

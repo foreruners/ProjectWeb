@@ -27,13 +27,13 @@ export default {
     </div>
   </section>
   
-  <div class="container p-4">
-    <h1 class="text-center p-4">New collection</h1>
+  <div class="container mygrid p-4">
+    <h1 class="text-center m-4 p-2">New collection</h1>
     <GridSample></GridSample>
   </div>
 
-  <div class="container p-4">
-    <h1 class="text-center p-4">Best sellers</h1>
+  <div class="container mygrid p-4">
+    <h1 class="text-center m-4 p-2">Best sellers</h1>
     <GridSample></GridSample>
   </div>
   
@@ -82,8 +82,15 @@ export default {
 }
 
 .hero-button:hover {
-  border-color: #f9f7f7;
+  border-color: #f9f7f7d7;
   background-color: rgba(10, 10, 10, 0.6)
+}
+
+.mygrid h1{
+  background-color: rgb(242, 241, 246);
+  color: rgba(9, 3, 39, 0.94);
+  text-shadow: #4f4c4c 1px 1px 1px;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 </style>
   

@@ -93,7 +93,7 @@ export default {
           <h2>Where we are</h2>
           <h5>Man Boutique</h5>
           <p><strong>Email:</strong> manboutique@email.com</p>
-          <p><strong>Phone:</strong> +1 234 567 890</p>
+          <p><strong>Phone:</strong> +012 345 678</p>
 
           <div class="map mt-4">
 
@@ -119,7 +119,7 @@ export default {
           effective solutions.</p>
 
         <p>Email: americoamorim@email.com</p>
-        <p>Phone: +1 234 567 891</p>
+        <p>Phone: +987 654 321</p>
         <div class="d-flex justify-content-center">
           <button class="btn btn-primary mt-2" @click="openEmail('americoamorim@email.com')">Email Americo</button>
         </div>
@@ -132,7 +132,7 @@ export default {
           interactions are positive.</p>
 
         <p>Email: franciscaazevedo@email.com</p>
-        <p>Phone: +1 234 567 891</p>
+        <p>Phone: +123 456 789</p>
         <div class="d-flex justify-content-center">
           <button class="btn btn-primary mt-2" @click="openEmail('franciscaazevedo@email.com')">Email Francisca</button>
         </div>
