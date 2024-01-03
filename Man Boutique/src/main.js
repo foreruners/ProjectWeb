@@ -1,11 +1,29 @@
-import { createApp } from 'vue'
-//import './style.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import App from './App.vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import App from './App.vue';
+import router from './router/index.js';
+import axios from 'axios';
+import { useCartStore } from './store/CartStore.js';
 
-const app = createApp(App)
-const pinia = createPinia()
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importar o arquivo CSS
 
-app.use(pinia)
-app.mount('#app')
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+
+const pinia = createPinia(); 
+
+const app = createApp(App);
+app.use(pinia); 
+app.use(router).mount('#app');
+app.config.globalProperties.$axios = axios;
+const cartStore = useCartStore();
+// Load the cart from localStorage when the app starts
+cartStore.cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+export { pinia };
+AOS.init();
