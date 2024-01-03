@@ -5,6 +5,9 @@ import router from './router/index.js';
 import axios from 'axios';
 import { useCartStore } from './store/CartStore.js';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importar o arquivo CSS
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -23,3 +26,4 @@ const cartStore = useCartStore();
 cartStore.cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export { pinia };
+AOS.init();

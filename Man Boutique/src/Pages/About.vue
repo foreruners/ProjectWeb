@@ -35,7 +35,7 @@ export default {
                     </p>
                 </div>
                 <div class="about-image col-md-5">
-                    <img src="../imgs/abouImg.png" class="img-fluid rounded">
+                    <img src="../assets/img/abouImg.png" class="img-fluid rounded">
                 </div>
             </div>
             <hr>
